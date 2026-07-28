@@ -1,16 +1,6 @@
-'use client'
-import { useState } from 'react'
+import Link from 'next/link'
 
-export function ServiceCard({ service }: { service: any }) {
-  return (
-    <div className="card" style={{display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
-      <div>
-        <div style={{fontSize:12,color:'var(--color-ink-muted)',marginBottom:'var(--space-1)'}}>{service.durationMin} MIN</div>
-        <h3>{service.name}</h3>
-        <div style={{fontSize:28,margin:'var(--space-2) 0'}}>${service.price}</div>
-        <p style={{color:'var(--color-ink-muted)',fontSize:14}}>{service.description}</p>
-      </div>
-      <a href={`/book?service=${service.slug}`} className="btn" style={{marginTop:'var(--space-4)',display:'block',textAlign:'center'}}>Select</a>
-    </div>
-  )
+type Service = { slug: string; name: string; price: number; durationMin: number; description: string }
+export function ServiceCard({ service, featured = false }: { service: Service; featured?: boolean }) {
+  return <article className={`offer ${featured ? 'offer--featured' : ''}`}><p className="offer__label">{featured ? 'MOST HANDS-ON' : `${service.durationMin} MINUTES`}</p><h3>{service.name}</h3><p className="offer__price">${service.price}{service.slug === 'custom' ? '+' : ''}</p><p>{service.description}</p><Link href={`/book?service=${service.slug}`} className="offer__link">Choose this path <span>→</span></Link></article>
 }

@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { auth } from "@/lib/auth"
 import { redirect } from "next/navigation"
 import { prisma } from "@/lib/db"
@@ -16,7 +17,7 @@ export default async function Admin() {
   return (
     <div className="container">
       <nav className="nav">
-        <a href="/">HERMES LAUNCH LAB</a>
+        <Link href="/">HERMES LAUNCH LAB</Link>
         <span>Admin</span>
       </nav>
       <h1>Dashboard</h1>

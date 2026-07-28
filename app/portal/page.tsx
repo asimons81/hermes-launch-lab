@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { auth } from "@/lib/auth"
 import { redirect } from "next/navigation"
 
@@ -8,7 +9,7 @@ export default async function Portal() {
   return (
     <div className="container">
       <nav className="nav">
-        <a href="/">HERMES LAUNCH LAB</a>
+        <Link href="/">HERMES LAUNCH LAB</Link>
         <form action="/api/auth/signout" method="post"><button>Sign out</button></form>
       </nav>
       <h1>Customer Portal</h1>

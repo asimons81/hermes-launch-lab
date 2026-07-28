@@ -1,18 +1,6 @@
 import Link from 'next/link'
+import { SiteHeader } from '@/components/SiteHeader'
+import { SiteFooter } from '@/components/SiteFooter'
 
-export default function FAQ() {
-  return (
-    <div className="container" style={{maxWidth:720}}>
-      <nav className="nav"><Link href="/">HERMES LAUNCH LAB</Link></nav>
-      <h1>FAQ</h1>
-      <div style={{marginTop:'var(--space-5)'}}>
-        <h3>Is this official Hermes support?</h3>
-        <p>No. Independent consulting. Not affiliated with Nous Research.</p>
-        <h3>Do you guarantee installation?</h3>
-        <p>Strategy sessions do not include installation. Launch sessions do.</p>
-        <h3>How do I cancel?</h3>
-        <p>24h+ notice for full credit. See refund policy.</p>
-      </div>
-    </div>
-  )
-}
+const faqs = [['Is this official Hermes support?', 'No. This is an independent consulting service, not affiliated with Nous Research or Hermes Agent maintainers.'], ['Do you guarantee installation?', 'Strategy sessions do not include installation. Launch sessions include hands-on setup or repair work.'], ['What should I prepare?', 'Bring a clear goal and access to your own environment. Do not paste passwords, API keys, or tokens into intake forms.'], ['How do I cancel?', 'Give 24 hours or more notice for a full credit. See the refund policy for details.']]
+export default function FAQ() { return <><SiteHeader /><main className="shell page-shell page-shell--narrow"><p className="eyebrow">GOOD QUESTIONS</p><h1 className="page-title">Before we build.</h1><p className="page-intro">The practical details, without the sales fog.</p><div style={{marginTop:42}}>{faqs.map(([q,a], i) => <section className="card" style={{marginTop:i ? 12 : 0}} key={q}><p className="eyebrow">0{i+1}</p><h2 style={{fontSize:25,letterSpacing:'-.04em',margin:'0 0 10px'}}>{q}</h2><p style={{color:'var(--muted)',margin:0}}>{a}</p></section>)}</div><p style={{marginTop:32}}><Link className="text-link" href="/book">Book a session <span>→</span></Link></p></main><SiteFooter /></> }
