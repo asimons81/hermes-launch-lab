@@ -1,8 +1,9 @@
 import { prisma } from "@/lib/db"
-import { auth } from "@/app/api/auth/[...nextauth]/route"
+import { auth } from "@/lib/auth"
 import { redirect } from "next/navigation"
 
-export default async function Book({ searchParams }: { searchParams: { service?: string } }) {
+export default async function Book(props: { searchParams: Promise<{ service?: string }> }) {
+  const searchParams = await props.searchParams
   const session = await auth()
   if (!session) redirect('/auth/signin')
 

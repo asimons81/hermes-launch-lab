@@ -1,6 +1,6 @@
 import Stripe from 'stripe'
 import { prisma } from '@/lib/db'
-import { auth } from '@/app/api/auth/[...nextauth]/route'
+import { auth } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
