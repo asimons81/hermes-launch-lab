@@ -1,0 +1,135 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  role          String    @default("customer") // customer | admin
+  createdAt     DateTime  @default(now())
+  bookings      Booking[]
+  payments      Payment[]
+  intakes       Intake[]
+  applications  Application[]
+  notes         Note[]
+  sessions      Session[]
+  accounts      Account[]
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  price       Int
+  durationMin Int
+  description String
+  isActive    Boolean  @default(true)
+  isFeatured  Boolean  @default(false)
+  bookings    Booking[]
+}
+
+model Booking {
+  id          String    @id @default(cuid())
+  userId      String
+  serviceId   String
+  startTime   DateTime
+  endTime     DateTime
+  status      String    @default("pending") // pending | confirmed | cancelled | completed
+  timeZone    String
+  createdAt   DateTime  @default(now())
+  user        User      @relation(fields: [userId], references: [id])
+  service     Service   @relation(fields: [serviceId], references: [id])
+  payment     Payment?
+  intake      Intake?
+  @@unique([startTime, serviceId])
+}
+
+model Payment {
+  id           String   @id @default(cuid())
+  userId       String
+  bookingId    String?  @unique
+  stripeId     String   @unique
+  amount       Int
+  currency     String   @default("usd")
+  status       String   // succeeded | pending | failed | refunded
+  receiptUrl   String?
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id])
+  booking      Booking? @relation(fields: [bookingId], references: [id])
+}
+
+model Intake {
+  id             String   @id @default(cuid())
+  userId         String
+  bookingId      String?  @unique
+  fullName       String
+  email          String
+  timeZone       String
+  os             String
+  comfortLevel   String
+  hermesInstalled Boolean
+  installMethod  String?
+  environment    String
+  modelProvider  String?
+  messaging      String?
+  outcome        String
+  firstWorkflow  String
+  blocker        String
+  software       String?
+  accessibility  String?
+  recordConsent  Boolean  @default(false)
+  additional     String?
+  createdAt      DateTime @default(now())
+  user           User     @relation(fields: [userId], references: [id])
+  booking        Booking? @relation(fields: [bookingId], references: [id])
+}
+
+model Application {
+  id          String   @id @default(cuid())
+  userId      String
+  type        String   // custom | care
+  status      String   @default("received")
+  payload     Json
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model Note {
+  id        String   @id @default(cuid())
+  userId    String
+  content   String
+  isInternal Boolean @default(false)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id])
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?
+  access_token       String?
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?
+  session_state      String?
+  user               User    @relation(fields: [userId], references: [id])
+  @@unique([provider, providerAccountId])
+}
