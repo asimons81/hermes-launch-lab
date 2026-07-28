@@ -10,7 +10,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
     Resend({
       apiKey: process.env.RESEND_API_KEY!,
-      from: "Hermes Launch Lab <no-reply@tonysimons.dev>"
+      from: "Hermes Launch Lab <tony@tonyreviewsthings.com>"
     })
   ],
   pages: {
