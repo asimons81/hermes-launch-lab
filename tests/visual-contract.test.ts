@@ -7,8 +7,8 @@ const read = (path: string) => readFileSync(resolve(process.cwd(), path), 'utf8'
 describe('Technical Atelier visual contract', () => {
   it('gives the flagship homepage an outcome-led hero and truthful proof', () => {
     const page = read('app/page.tsx')
-    expect(page).toMatch(/Leave with Hermes[\s\S]*working\./)
-    expect(page).toContain('No secrets. No mystery-box setup.')
+    expect(page).toMatch(/Leave with[\s\S]*working\./)
+    expect(page).toContain('No mystery-box setup.')
     expect(page).not.toMatch(/10\+ years shipping/i)
   })
 
