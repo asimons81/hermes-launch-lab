@@ -138,7 +138,7 @@ export function LiveTerminal() {
             <span className="terminal__dot terminal__dot--amber" />
             <span className="terminal__dot terminal__dot--green" />
           </span>
-          <span className="terminal__title">
+          <span className="terminal__title" style={{ fontSize: 11, fontFamily: 'var(--mono)', color: 'var(--muted)' }}>
             {mode === 'auto' ? 'hermes-session — auto-demo' : 'hermes-interactive — sandbox'}
           </span>
         </div>
@@ -146,8 +146,8 @@ export function LiveTerminal() {
           <button
             onClick={() => setMode('auto')}
             style={{
-              background: mode === 'auto' ? 'rgba(213,174,100,0.2)' : 'transparent',
-              border: '1px solid rgba(213,174,100,0.3)',
+              background: mode === 'auto' ? 'var(--gold-dim)' : 'transparent',
+              border: '1px solid var(--line)',
               color: mode === 'auto' ? 'var(--gold)' : 'var(--muted)',
               padding: '2px 8px',
               cursor: 'pointer',
@@ -164,8 +164,8 @@ export function LiveTerminal() {
               }
             }}
             style={{
-              background: mode === 'interactive' ? 'rgba(213,174,100,0.2)' : 'transparent',
-              border: '1px solid rgba(213,174,100,0.3)',
+              background: mode === 'interactive' ? 'var(--gold-dim)' : 'transparent',
+              border: '1px solid var(--line)',
               color: mode === 'interactive' ? 'var(--gold)' : 'var(--muted)',
               padding: '2px 8px',
               cursor: 'pointer',
@@ -218,9 +218,9 @@ export function LiveTerminal() {
       <div
         className="terminal__controls"
         style={{
-          borderTop: '1px solid rgba(213,174,100,0.15)',
+          borderTop: '1px solid var(--line)',
           padding: '8px 12px',
-          background: 'rgba(10,11,9,0.8)',
+          background: '#14171D',
           display: 'flex',
           flexWrap: 'wrap',
           gap: 6,
@@ -238,15 +238,15 @@ export function LiveTerminal() {
               fontFamily: 'var(--mono)',
               fontSize: 11,
               padding: '3px 8px',
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(242,240,233,0.12)',
-              color: 'var(--fg)',
+              background: 'var(--surface)',
+              border: '1px solid var(--line)',
+              color: 'var(--ink)',
               cursor: 'pointer',
               borderRadius: 2,
-              transition: 'all 0.15s ease',
+              transition: 'border-color 0.15s ease',
             }}
             onMouseOver={e => (e.currentTarget.style.borderColor = 'var(--gold)')}
-            onMouseOut={e => (e.currentTarget.style.borderColor = 'rgba(242,240,233,0.12)')}
+            onMouseOut={e => (e.currentTarget.style.borderColor = 'var(--line)')}
           >
             $ {cmd}
           </button>
@@ -259,8 +259,8 @@ export function LiveTerminal() {
               fontSize: 10,
               padding: '3px 8px',
               background: 'transparent',
-              border: '1px dashed rgba(255,100,100,0.4)',
-              color: '#ff8888',
+              border: '1px dashed var(--line)',
+              color: 'var(--muted)',
               cursor: 'pointer',
               marginLeft: 'auto',
               borderRadius: 2,

@@ -16,7 +16,7 @@ export default function Home() {
         <section className="cockpit shell">
           <div className="cockpit__copy">
             <p className="eyebrow">HERMES AGENT CONSULTING</p>
-            <h1>Get Hermes running.<br /><span className="accent-text">Leave with it working.</span></h1>
+            <h1>Get Hermes running.<br /><span className="accent">Leave with it working.</span></h1>
             <p className="cockpit__lede">
               Hands-on installation, secure configuration, and tested workflows. Windows, macOS, or Linux — you bring the machine, I bring the expertise.
             </p>
@@ -43,7 +43,7 @@ export default function Home() {
         <section className="diagnostic-section shell" style={{ paddingBlock: 64 }}>
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
             <p className="eyebrow">FIND YOUR PATH</p>
-            <h2 style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, letterSpacing: '-.035em', lineHeight: 1.05, margin: 0 }}>
+            <h2 style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 700, letterSpacing: '-.035em', lineHeight: 1.05, margin: 0 }}>
               Which session do you need?
             </h2>
             <p style={{ color: 'var(--muted)', fontSize: 17, maxWidth: 480, margin: '16px auto 0' }}>
@@ -57,7 +57,7 @@ export default function Home() {
         <section className="topo-section shell" style={{ paddingBlock: 64 }}>
           <div style={{ marginBottom: 48 }}>
             <p className="eyebrow">SYSTEM TOPOLOGY</p>
-            <h2 style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, letterSpacing: '-.035em', lineHeight: 1.05, margin: 0, maxWidth: 620 }}>
+            <h2 style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 700, letterSpacing: '-.035em', lineHeight: 1.05, margin: 0, maxWidth: 620 }}>
               One agent. Your machine. Real output.
             </h2>
             <p style={{ color: 'var(--muted)', fontSize: 17, maxWidth: 540, margin: '16px 0 0' }}>
@@ -86,9 +86,9 @@ export default function Home() {
 
         {/* === CLOSING === */}
         <section className="closing" style={{ paddingBlock: 80, textAlign: 'center' }}>
-          <div className="pane shell closing__inner" style={{ padding: 48, background: 'rgba(14,18,26,0.9)', border: '1px solid var(--gold)' }}>
+          <div className="pane shell closing__inner" style={{ padding: 48, background: 'var(--surface)', border: '1px solid var(--gold)' }}>
             <p className="eyebrow">READY WHEN YOU ARE</p>
-            <h2 style={{ fontSize: 36, fontWeight: 800, margin: '8px 0 16px 0' }}>Build the first useful thing.</h2>
+            <h2 style={{ fontSize: 36, fontWeight: 700, margin: '8px 0 16px 0' }}>Build the first useful thing.</h2>
             <p style={{ color: 'var(--muted)', fontSize: 17, maxWidth: 500, margin: '0 auto 24px auto' }}>Choose a session and we&apos;ll turn the starting point into a working system.</p>
             <Link href="/book" className="button button--primary" style={{ padding: '12px 32px', fontSize: 15 }}>Book a session <span>↗</span></Link>
           </div>
