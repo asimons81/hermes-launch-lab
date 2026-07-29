@@ -1,14 +1,25 @@
 export default function Refund() {
   return (
-    <div>
-      <h1>Refund, Cancellation &amp; Rescheduling</h1>
-      <p style={{color:'var(--color-ink-muted)'}}>Draft — requires legal review.</p>
-      <h3>Cancellation</h3>
-      <p>24+ hours notice: full credit or reschedule. Less than 24 hours: session forfeited.</p>
-      <h3>Refunds</h3>
-      <p>Refunds issued only if Tony cannot fulfill the booked service. Processed within 5 business days.</p>
-      <h3>Rescheduling</h3>
-      <p>One free reschedule per booking. Additional changes subject to availability.</p>
-    </div>
+    <article>
+      <h1 className="page-title">Refund &amp; Cancellation Policy</h1>
+      <p className="page-intro">Clear rules for rescheduling, credits, and session changes.</p>
+
+      <div className="card" style={{ marginTop: 24 }}>
+        <h3 style={{ marginTop: 0 }}>Cancellation &amp; Rescheduling</h3>
+        <p style={{ color: 'var(--muted)' }}>
+          24+ hours notice: Full credit or reschedule. Less than 24 hours: Session forfeited.
+        </p>
+
+        <h3 style={{ marginTop: 24 }}>Refunds</h3>
+        <p style={{ color: 'var(--muted)' }}>
+          Full refunds are issued if Tony cannot fulfill the booked session. Processed within 5 business days to the original payment method via Stripe.
+        </p>
+
+        <h3 style={{ marginTop: 24 }}>Reschedule Limit</h3>
+        <p style={{ color: 'var(--muted)', margin: 0 }}>
+          One free reschedule per booking with 24h advance notice.
+        </p>
+      </div>
+    </article>
   )
 }

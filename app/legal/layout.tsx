@@ -1,15 +1,18 @@
-import Link from 'next/link'
+import { SiteHeader } from '@/components/SiteHeader'
+import { SiteFooter } from '@/components/SiteFooter'
 
 export default function LegalLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="container" style={{maxWidth:720}}>
-      <nav className="nav">
-        <Link href="/">HERMES LAUNCH LAB</Link>
-      </nav>
-      {children}
-      <div style={{marginTop:'var(--space-8)',fontSize:12,color:'var(--color-ink-muted)'}}>
-        This is a draft. Final legal review required before launch.
-      </div>
-    </div>
+    <>
+      <SiteHeader />
+      <main className="shell page-shell page-shell--narrow">
+        <p className="eyebrow">LEGAL &amp; PRIVACY</p>
+        {children}
+        <p className="notice" style={{ marginTop: 40 }}>
+          Independent consulting service. Not affiliated with Nous Research or Hermes Agent maintainers.
+        </p>
+      </main>
+      <SiteFooter />
+    </>
   )
 }

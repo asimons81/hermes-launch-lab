@@ -32,16 +32,16 @@ export function TopoGraph() {
           {edges.map((edge, i) => {
             const from = nodes.find(n => n.id === edge.from)!
             const to = nodes.find(n => n.id === edge.to)!
-            const x1 = (from.x / 3) * 400
-            const y1 = (from.y / 2) * 300
-            const x2 = (to.x / 3) * 400
-            const y2 = (to.y / 2) * 300
+            const x1 = (12 + (from.x / 3) * 76) * 4
+            const y1 = (15 + (from.y / 2) * 70) * 3
+            const x2 = (12 + (to.x / 3) * 76) * 4
+            const y2 = (15 + (to.y / 2) * 70) * 3
             const isActive = activeNode === edge.from || activeNode === edge.to
             return (
               <line
                 key={i}
                 x1={x1} y1={y1} x2={x2} y2={y2}
-                stroke={isActive ? 'rgba(213,174,100,0.6)' : 'rgba(242,240,233,0.1)'}
+                stroke={isActive ? 'var(--gold)' : 'var(--line)'}
                 strokeWidth={isActive ? '1.5' : '1'}
                 className={isActive ? 'topo__edge topo__edge--active' : 'topo__edge'}
               />
@@ -50,8 +50,8 @@ export function TopoGraph() {
         </svg>
         {/* Nodes */}
         {nodes.map(node => {
-          const left = `${(node.x / 3) * 100}%`
-          const top = `${(node.y / 2) * 100}%`
+          const left = `${12 + (node.x / 3) * 76}%`
+          const top = `${15 + (node.y / 2) * 70}%`
           const isActive = activeNode === node.id
           return (
             <button

@@ -1,7 +1,8 @@
-import Link from "next/link"
 import { auth } from "@/lib/auth"
 import { redirect } from "next/navigation"
 import { prisma } from "@/lib/db"
+import { SiteHeader } from "@/components/SiteHeader"
+import { SiteFooter } from "@/components/SiteFooter"
 
 export default async function Admin() {
   const session = await auth()
@@ -15,33 +16,55 @@ export default async function Admin() {
   })
 
   return (
-    <div className="container">
-      <nav className="nav">
-        <Link href="/">HERMES LAUNCH LAB</Link>
-        <span>Admin</span>
-      </nav>
-      <h1>Dashboard</h1>
-      <div className="card" style={{marginBottom:'var(--space-5)'}}>
-        <h3>Upcoming Sessions ({bookings.length})</h3>
-        <table className="table">
-          <thead>
-            <tr><th>When</th><th>Customer</th><th>Service</th><th>Status</th></tr>
-          </thead>
-          <tbody>
-            {bookings.map(b => (
-              <tr key={b.id}>
-                <td>{b.startTime.toLocaleString()}</td>
-                <td>{b.user.email}</td>
-                <td>{b.service.name}</td>
-                <td>{b.status}</td>
+    <>
+      <SiteHeader />
+      <main className="shell page-shell">
+        <p className="eyebrow">ADMINISTRATION</p>
+        <h1 className="page-title">Booking Dashboard</h1>
+        <p className="page-intro">Real-time session reservations and client intake records.</p>
+
+        <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
+          <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--line)', background: 'var(--surface-2)' }}>
+            <h3 style={{ margin: 0, fontSize: 18 }}>Recent Sessions ({bookings.length})</h3>
+          </div>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>When</th>
+                <th>Customer</th>
+                <th>Service</th>
+                <th>Status</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <div style={{fontSize:12,color:'var(--color-ink-muted)'}}>
-        Real data. Server-side authorization enforced.
-      </div>
-    </div>
+            </thead>
+            <tbody>
+              {bookings.length === 0 ? (
+                <tr>
+                  <td colSpan={4} style={{ textAlign: 'center', color: 'var(--muted)', padding: '32px 16px' }}>
+                    No bookings recorded in database yet.
+                  </td>
+                </tr>
+              ) : (
+                bookings.map(b => (
+                  <tr key={b.id}>
+                    <td style={{ fontFamily: 'var(--mono)', fontSize: 13 }}>{b.startTime.toLocaleString()}</td>
+                    <td>{b.user.email}</td>
+                    <td style={{ color: 'var(--gold)' }}>{b.service.name}</td>
+                    <td>
+                      <span className="status-bar__dot status-bar__dot--ok" />
+                      {b.status}
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        <p className="notice" style={{ marginTop: 24 }}>
+          Server-side authorization enforced. Admin role verified.
+        </p>
+      </main>
+      <SiteFooter />
+    </>
   )
 }
