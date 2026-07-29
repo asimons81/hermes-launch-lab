@@ -16,7 +16,7 @@ export default function Home() {
         <section className="cockpit shell">
           <div className="cockpit__copy">
             <p className="eyebrow">HERMES AGENT CONSULTING</p>
-            <h1>Get Hermes running.<br /><span className="accent">Leave with it working.</span></h1>
+            <h1>Get Hermes running.<br /><span className="accent-text">Leave with it working.</span></h1>
             <p className="cockpit__lede">
               Hands-on installation, secure configuration, and tested workflows. Windows, macOS, or Linux — you bring the machine, I bring the expertise.
             </p>
@@ -33,17 +33,17 @@ export default function Home() {
         </section>
 
         {/* === RECEIPTS RAIL === */}
-        <section className="receipts-section">
+        <section className="receipts-section" style={{ paddingBlock: 24 }}>
           <div className="shell">
             <ReceiptsRail />
           </div>
         </section>
 
         {/* === DIAGNOSTIC (replaces pricing) === */}
-        <section className="diagnostic-section shell">
+        <section className="diagnostic-section shell" style={{ paddingBlock: 64 }}>
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
             <p className="eyebrow">FIND YOUR PATH</p>
-            <h2 style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 640, letterSpacing: '-.035em', lineHeight: 1.05, margin: 0 }}>
+            <h2 style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, letterSpacing: '-.035em', lineHeight: 1.05, margin: 0 }}>
               Which session do you need?
             </h2>
             <p style={{ color: 'var(--muted)', fontSize: 17, maxWidth: 480, margin: '16px auto 0' }}>
@@ -54,10 +54,10 @@ export default function Home() {
         </section>
 
         {/* === TOPOGRAPH (replaces "What is Hermes" + process) === */}
-        <section className="topo-section shell">
+        <section className="topo-section shell" style={{ paddingBlock: 64 }}>
           <div style={{ marginBottom: 48 }}>
             <p className="eyebrow">SYSTEM TOPOLOGY</p>
-            <h2 style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 640, letterSpacing: '-.035em', lineHeight: 1.05, margin: 0, maxWidth: 620 }}>
+            <h2 style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, letterSpacing: '-.035em', lineHeight: 1.05, margin: 0, maxWidth: 620 }}>
               One agent. Your machine. Real output.
             </h2>
             <p style={{ color: 'var(--muted)', fontSize: 17, maxWidth: 540, margin: '16px 0 0' }}>
@@ -68,29 +68,29 @@ export default function Home() {
         </section>
 
         {/* === FIT PANEL === */}
-        <section className="section shell">
-          <div className="fit-panel">
+        <section className="section shell" style={{ paddingBlock: 48 }}>
+          <div className="pane fit-panel" style={{ padding: 40, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, alignItems: 'center' }}>
             <div>
               <p className="eyebrow">A GOOD FIT</p>
-              <h2 style={{ fontSize: 'clamp(28px,3.5vw,42px)', fontWeight: 600, letterSpacing: '-.03em', lineHeight: 1.1, margin: 0 }}>
+              <h2 style={{ fontSize: 'clamp(28px,3.5vw,42px)', fontWeight: 700, letterSpacing: '-.03em', lineHeight: 1.1, margin: 0 }}>
                 For people who want a real setup — not a sales call.
               </h2>
             </div>
-            <div className="fit-panel__copy">
-              <p>Come with a goal, a machine or server, and a willingness to work through the details. We&apos;ll keep the session practical.</p>
-              <p>This is independent consulting for Hermes Agent. It is not official Nous Research support, and it is not a place to paste credentials into a form.</p>
-              <Link href="/faq" className="text-link">Read the FAQ <span>→</span></Link>
+            <div className="fit-panel__copy" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              <p style={{ margin: 0, color: 'var(--muted)' }}>Come with a goal, a machine or server, and a willingness to work through the details. We&apos;ll keep the session practical.</p>
+              <p style={{ margin: 0, color: 'var(--faint)', fontSize: 14 }}>This is independent consulting for Hermes Agent. It is not official Nous Research support, and it is not a place to paste credentials into a form.</p>
+              <Link href="/faq" className="text-link" style={{ marginTop: 8 }}>Read the FAQ <span>→</span></Link>
             </div>
           </div>
         </section>
 
         {/* === CLOSING === */}
-        <section className="closing">
-          <div className="shell closing__inner">
+        <section className="closing" style={{ paddingBlock: 80, textAlign: 'center' }}>
+          <div className="pane shell closing__inner" style={{ padding: 48, background: 'rgba(14,18,26,0.9)', border: '1px solid var(--gold)' }}>
             <p className="eyebrow">READY WHEN YOU ARE</p>
-            <h2>Build the first useful thing.</h2>
-            <p>Choose a session and we&apos;ll turn the starting point into a working system.</p>
-            <Link href="/book" className="button button--primary">Book a session <span>↗</span></Link>
+            <h2 style={{ fontSize: 36, fontWeight: 800, margin: '8px 0 16px 0' }}>Build the first useful thing.</h2>
+            <p style={{ color: 'var(--muted)', fontSize: 17, maxWidth: 500, margin: '0 auto 24px auto' }}>Choose a session and we&apos;ll turn the starting point into a working system.</p>
+            <Link href="/book" className="button button--primary" style={{ padding: '12px 32px', fontSize: 15 }}>Book a session <span>↗</span></Link>
           </div>
         </section>
       </main>
