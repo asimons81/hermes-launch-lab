@@ -15,7 +15,10 @@ export default function Home() {
         {/* === COCKPIT HERO === */}
         <section className="cockpit shell">
           <div className="cockpit__copy">
-            <p className="eyebrow">HERMES AGENT CONSULTING</p>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 14px', background: 'var(--red-soft)', border: '1px solid rgba(255, 42, 53, 0.15)', borderRadius: '100px', color: 'var(--red-accent)', fontFamily: 'var(--mono)', fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: 20 }}>
+              <span style={{ width: 6, height: 6, background: 'var(--red-accent)', borderRadius: '50%', boxShadow: '0 0 8px var(--red-accent)' }} />
+              SYSTEM ACTIVE // HERMES LAUNCH LAB
+            </div>
             <h1>Get Hermes running.<br /><span className="accent">Leave with it working.</span></h1>
             <p className="cockpit__lede">
               Hands-on installation, secure configuration, and tested workflows. Windows, macOS, or Linux — you bring the machine, I bring the expertise.

@@ -1,17 +1,29 @@
 :root {
   /* === Tony Simons Obsidian & Crimson Brand System === */
   --bg: #020203;
+  --background: #020203;
   --surface: #0A0A0C;
   --surface-2: #121215;
+  --surface-hover: #121215;
+  --panel: rgba(10, 10, 12, 0.85);
   --ink: #F8F9FA;
+  --foreground: #F8F9FA;
+  --warm-white: #F8F9FA;
+  --bone: #E2E8F0;
   --muted: #8E9BAE;
+  --muted-2: #48566A;
   --faint: #48566A;
 
   /* Borders & Lines */
   --line: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.05);
   --line-strong: rgba(255, 42, 53, 0.25);
+  --border-hover: rgba(255, 42, 53, 0.25);
 
-  /* Popping Crimson Accent */
+  /* Popping Crimson Accent & Aliases */
+  --red-accent: #FF2A35;
+  --crimson: #FF2A35;
+  --red-soft: rgba(255, 42, 53, 0.08);
   --gold: #FF2A35;
   --gold-bright: #FF4D57;
   --gold-dim: rgba(255, 42, 53, 0.12);
@@ -23,8 +35,11 @@
 
   /* Typography */
   --display: var(--font-instrument-serif), Georgia, serif;
+  --font-serif: var(--font-instrument-serif), Georgia, serif;
   --sans: var(--font-jakarta), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: var(--font-jakarta), -apple-system, BlinkMacSystemFont, sans-serif;
   --mono: var(--font-jetbrains-mono), ui-monospace, Menlo, monospace;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, Menlo, monospace;
 
   /* Matte Panes & Glass */
   --glass-bg: rgba(10, 10, 12, 0.85);
@@ -200,13 +215,14 @@ select {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(10, 11, 13, 0.92);
-  border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(2, 2, 3, 0.85);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(20px) saturate(130%);
+  -webkit-backdrop-filter: blur(20px) saturate(130%);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .site-header__inner {
-  min-height: 60px;
+  min-height: 64px;
   display: flex;
   align-items: center;
   gap: 24px;
@@ -214,27 +230,60 @@ select {
 .brand-mark {
   font-family: var(--mono);
   font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   display: flex;
   align-items: center;
   gap: 10px;
   white-space: nowrap;
+  text-decoration: none;
 }
 .brand-mark em {
   font-style: normal;
-  color: var(--gold);
+  color: var(--red-accent);
 }
 .brand-mark__glyph {
   width: 22px;
   height: 22px;
   display: grid;
   place-items: center;
-  border: 1px solid var(--gold);
-  color: var(--gold);
+  border: 1px solid var(--red-accent);
+  color: var(--red-accent);
   font-size: 11px;
-  background: var(--gold-dim);
-  border-radius: 2px;
+  background: var(--red-soft);
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-weight: 700;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.brand-mark:hover .brand-mark__glyph {
+  box-shadow: 0 0 12px rgba(255, 42, 53, 0.35);
+  background: rgba(255, 42, 53, 0.15);
+}
+
+.mono-label-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: var(--red-soft);
+  border: 1px solid var(--line-strong);
+  color: var(--red-accent);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.mono-label-pill:hover {
+  background: rgba(255, 42, 53, 0.18);
+  box-shadow: 0 0 12px rgba(255, 42, 53, 0.25);
+  color: #FFFFFF;
 }
 .site-nav {
   margin-left: auto;

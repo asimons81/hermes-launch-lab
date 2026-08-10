@@ -11,22 +11,9 @@ export function SiteHeader() {
         <nav className="site-nav" aria-label="Primary navigation">
           <a
             href="https://tonysimons.dev"
-            style={{
-              color: 'var(--gold)',
-              fontWeight: 600,
-              fontFamily: 'var(--mono)',
-              fontSize: 12,
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 4,
-              padding: '4px 10px',
-              borderRadius: 4,
-              background: 'var(--gold-dim)',
-              border: '1px solid var(--line-strong)',
-              transition: 'all 0.2s ease',
-            }}
+            className="mono-label-pill"
           >
-            ← Studio Portfolio
+            ← STUDIO PORTFOLIO
           </a>
           <Link href="/features">Features</Link>
           <Link href="/pricing">Pricing</Link>
