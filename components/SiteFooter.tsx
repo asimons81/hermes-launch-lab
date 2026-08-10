@@ -7,8 +7,8 @@ export function SiteFooter() {
       <div className="shell site-footer__grid">
         <div><BrandMark /><p>Private, hands-on Hermes Agent consulting.</p></div>
         <div className="footer-links">
-          <a href="https://tonysimons.dev" target="_blank" rel="noopener noreferrer">tonysimons.dev ↗</a>
-          <a href="https://tonyreviewsthings.com" target="_blank" rel="noopener noreferrer">tonyreviewsthings.com ↗</a>
+          <a href="https://tonysimons.dev">tonysimons.dev ↗</a>
+          <a href="https://tonyreviewsthings.com">tonyreviewsthings.com ↗</a>
           <Link href="/features">Features</Link>
           <Link href="/pricing">Pricing</Link>
           <Link href="/docs">Docs</Link>
