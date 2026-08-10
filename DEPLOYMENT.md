@@ -17,5 +17,11 @@ NEXTAUTH_URL=https://launch.tonysimons.dev
 6. Configure custom domain + SSL (automatic on Vercel)
 7. Seed admin user via Prisma Studio or script
 
+## DNS (2026-08-10 verified)
+launch.tonysimons.dev → A 76.76.21.21 (Vercel), grey-cloud (proxied: false) in Cloudflare.
+Mirrors hermes.tonysimons.dev. Do NOT point this subdomain at the Cloudflare Tunnel —
+that routes production traffic through the local machine and is a single point of
+failure for a payments site.
+
 ## Health check
 GET /api/health returns 200 when DB connected.
