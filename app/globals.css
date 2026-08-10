@@ -94,7 +94,7 @@ button {
 
 /* === Layout & Containers === */
 .shell {
-  width: min(1160px, calc(100% - 48px));
+  width: min(1200px, calc(100% - 48px));
   margin-inline: auto;
 }
 .shell--wide {
