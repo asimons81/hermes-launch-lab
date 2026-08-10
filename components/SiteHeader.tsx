@@ -9,6 +9,7 @@ export function SiteHeader() {
       <div className="shell site-header__inner">
         <BrandMark />
         <nav className="site-nav" aria-label="Primary navigation">
+          <a href="https://tonysimons.dev" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', fontWeight: 600 }}>tonysimons.dev ↗</a>
           <Link href="/features">Features</Link>
           <Link href="/pricing">Pricing</Link>
           <Link href="/docs">Docs</Link>
