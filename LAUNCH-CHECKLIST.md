@@ -8,8 +8,8 @@
 - [x] Auth gate verified: /book → 307 /auth/signin
 - [x] Rollback plan: previous Vercel deployment (Vercel keeps history)
 - [ ] Stripe webhook endpoint URL updated in Stripe dashboard to https://launch.tonysimons.dev/api/webhooks/stripe (was hermes.tonysimons.dev)
-- [ ] Admin user created with role=admin (manual — see DEPLOYMENT.md step 7)
-- [ ] Services seeded (seed script covers services; admin is manual)
+- [x] Admin user created with role=admin (tony@tonyreviewsthings.com, 2026-08-10)
+- [x] Services seeded (3 sessions live via /api/services; db:seed no-op bug fixed in df06665)
 - [ ] Test checkout end-to-end in live mode
 - [ ] Email domain verified with Resend (sender tony@tonyreviewsthings.com)
 - [ ] Privacy/Terms/Refund pages reviewed by counsel
