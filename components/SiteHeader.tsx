@@ -9,7 +9,26 @@ export function SiteHeader() {
       <div className="shell site-header__inner">
         <BrandMark />
         <nav className="site-nav" aria-label="Primary navigation">
-          <a href="https://tonysimons.dev" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', fontWeight: 600 }}>tonysimons.dev ↗</a>
+          <a
+            href="https://tonysimons.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: 'var(--gold)',
+              fontWeight: 600,
+              fontFamily: 'var(--mono)',
+              fontSize: 12,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 4,
+              padding: '2px 8px',
+              borderRadius: 3,
+              background: 'var(--gold-dim)',
+              border: '1px solid var(--line-strong)',
+            }}
+          >
+            ← Studio Portfolio
+          </a>
           <Link href="/features">Features</Link>
           <Link href="/pricing">Pricing</Link>
           <Link href="/docs">Docs</Link>
