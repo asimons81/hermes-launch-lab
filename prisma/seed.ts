@@ -13,3 +13,14 @@ export async function seedServices() {
   })
   console.log('Services seeded')
 }
+
+// Run when executed directly (npm run db:seed / tsx prisma/seed.ts).
+// Importing this module as a library must NOT auto-seed.
+if (require.main === module) {
+  seedServices()
+    .then(() => process.exit(0))
+    .catch((e) => {
+      console.error(e)
+      process.exit(1)
+    })
+}
