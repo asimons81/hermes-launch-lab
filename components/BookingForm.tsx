@@ -2,11 +2,16 @@
 
 import { useEffect, useState } from 'react'
 
-type Service = { id: string; name: string; price: number }
+type Service = { id: string; name: string; price: number; slug?: string }
 type Day = { date: string; label: string }
 
 export default function BookingForm({ services, initialService }: { services: Service[]; initialService: string }) {
-  const [serviceId, setServiceId] = useState(initialService)
+  // initialService may be a slug (e.g. ?service=launch) — resolve to a real service id.
+  const resolvedInitial = services.find(s => s.slug === initialService)?.id
+    ?? services.find(s => s.id === initialService)?.id
+    ?? services[0]?.id
+    ?? ''
+  const [serviceId, setServiceId] = useState(resolvedInitial)
   const [days, setDays] = useState<Day[]>([])
   const [date, setDate] = useState('')
   const [slots, setSlots] = useState<{ iso: string; label: string }[]>([])
