@@ -1,7 +1,15 @@
+import type { Metadata } from 'next'
 import { ServiceCard } from '@/components/ServiceCard'
 import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
 import { RoiCalculator } from '@/components/RoiCalculator'
+
+export const metadata: Metadata = {
+  title: 'Pricing & Services',
+  description:
+    'One-time Hermes Agent consulting sessions: Strategy ($99), Launch ($299), and Custom Build ($600). No retainers, no upsell maze — you leave with working software.',
+  alternates: { canonical: '/pricing' },
+}
 
 const services = [
   { slug: 'strategy', name: 'Hermes Strategy Session', price: 99, durationMin: 60, description: 'Fit assessment, model recommendations, hosting guidance, security discussion, and a written action plan.' },

@@ -1,3 +1,12 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Consulting Agreement',
+  description:
+    'Additional terms for Custom Hermes Build sessions, incorporating the Terms of Service.',
+  alternates: { canonical: '/legal/agreement' },
+}
+
 export default function Agreement() {
   return (
     <article>

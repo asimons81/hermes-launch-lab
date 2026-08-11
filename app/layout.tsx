@@ -25,9 +25,45 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Hermes Launch Lab — Tony Simons Independent Studio',
-  description: 'Hands-on 1-on-1 Hermes Agent consulting, credential security setups, and custom agent infrastructure builds.',
-  icons: { icon: '/favicon.ico' }
+  metadataBase: new URL('https://launch.tonysimons.dev'),
+  title: {
+    default: 'Hermes Launch Lab — Tony Simons Independent Studio',
+    template: '%s — Hermes Launch Lab',
+  },
+  description:
+    'Hands-on 1-on-1 Hermes Agent consulting, credential security setups, and custom agent infrastructure builds.',
+  applicationName: 'Hermes Launch Lab',
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
+  openGraph: {
+    type: 'website',
+    siteName: 'Hermes Launch Lab',
+    title: 'Hermes Launch Lab — Tony Simons Independent Studio',
+    description:
+      'Hands-on 1-on-1 Hermes Agent consulting, credential security setups, and custom agent infrastructure builds.',
+    url: '/',
+    images: [
+      {
+        url: '/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'Hermes Launch Lab — Tony Simons Independent Studio',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Hermes Launch Lab — Tony Simons Independent Studio',
+    description:
+      'Hands-on 1-on-1 Hermes Agent consulting, credential security setups, and custom agent infrastructure builds.',
+    images: ['/og.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -40,4 +76,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   )
 }
-

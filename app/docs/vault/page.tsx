@@ -1,4 +1,12 @@
+import type { Metadata } from 'next'
 import { DocsLayout, CodeBlock, Callout } from '@/components/DocsLayout'
+
+export const metadata: Metadata = {
+  title: 'Vault & Credential Security',
+  description:
+    'How lease-based credential brokering keeps your API keys isolated and out of raw terminal output.',
+  alternates: { canonical: '/docs/vault' },
+}
 
 export default function VaultDoc() {
   return (

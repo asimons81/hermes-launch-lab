@@ -1,3 +1,10 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Checkout Cancelled',
+  robots: { index: false, follow: false },
+}
+
 export default function BookCancel() {
   return (
     <div className="container" style={{textAlign:'center',marginTop:'var(--space-8)'}}>

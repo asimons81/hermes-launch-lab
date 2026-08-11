@@ -1,4 +1,12 @@
+import type { Metadata } from 'next'
 import { DocsLayout, CodeBlock, Callout } from '@/components/DocsLayout'
+
+export const metadata: Metadata = {
+  title: 'Skills Reference & Manifests',
+  description:
+    'How persistent skills encapsulate workflows, toolchains, and memory across Hermes sessions.',
+  alternates: { canonical: '/docs/skills' },
+}
 
 export default function SkillsDoc() {
   return (

@@ -1,3 +1,11 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy',
+  description: 'How we handle your information and technical metadata.',
+  alternates: { canonical: '/legal/privacy' },
+}
+
 export default function Privacy() {
   return (
     <article>

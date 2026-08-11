@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { prisma } from '@/lib/db'
 import { auth } from '@/lib/auth'
 import { redirect } from 'next/navigation'
@@ -5,6 +6,11 @@ import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
 import BookingForm from '@/components/BookingForm'
 import { buildSignInUrl } from '@/lib/auth-redirect'
+
+export const metadata: Metadata = {
+  title: 'Book a Session',
+  robots: { index: false, follow: false },
+}
 
 export default async function Book(props: { searchParams: Promise<{ service?: string }> }) {
   const searchParams = await props.searchParams

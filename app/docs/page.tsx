@@ -1,5 +1,13 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { DocsLayout, Callout } from '@/components/DocsLayout'
+
+export const metadata: Metadata = {
+  title: 'Documentation',
+  description:
+    'Practical technical guides for getting started with Hermes Agent, securing credentials, and configuring autonomous loops.',
+  alternates: { canonical: '/docs' },
+}
 
 const docPages = [
   { slug: 'quickstart', name: '1. Quickstart Guide', desc: 'Install the official Hermes CLI, choose a provider, and verify the setup in four practical steps.' },

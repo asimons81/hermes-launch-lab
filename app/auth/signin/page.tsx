@@ -1,8 +1,14 @@
+import type { Metadata } from 'next'
 import { auth, signIn } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 import { BrandMark } from '@/components/BrandMark'
 import { prisma } from '@/lib/db'
 import { safeCallbackUrl } from '@/lib/auth-redirect'
+
+export const metadata: Metadata = {
+  title: 'Sign In',
+  robots: { index: false, follow: false },
+}
 
 export default async function SignIn({
   searchParams,
