@@ -26,7 +26,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: 'Hermes Launch Lab — Tony Simons Independent Studio',
-  description: 'Hands-on 1-on-1 Hermes Agent consulting, zero-trust vault architecture, and custom agent infrastructure builds.',
+  description: 'Hands-on 1-on-1 Hermes Agent consulting, credential security setups, and custom agent infrastructure builds.',
   icons: { icon: '/favicon.ico' }
 }
 

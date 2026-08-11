@@ -5,8 +5,8 @@ import { useState } from 'react'
 const nodes = [
   { id: 'machine', label: 'Your Machine', desc: 'Windows, macOS, or Linux — the agent runs on your hardware.', x: 0, y: 1 },
   { id: 'core', label: 'Hermes Core', desc: 'Install, secure, configure. The agent that executes real work.', x: 1, y: 1 },
-  { id: 'skills', label: 'Skills', desc: 'Persistent workflows that survive sessions and compound over time.', x: 2, y: 0 },
-  { id: 'vault', label: 'Vault', desc: 'Credential broker. Secrets stay yours — brokered, lease-based, policy-gated.', x: 2, y: 1 },
+  { id: 'skills', label: 'Skills', desc: 'Persistent skill documents that teach Hermes repeatable workflows.', x: 2, y: 0 },
+  { id: 'secrets', label: 'Secrets', desc: 'Keys live in ~/.hermes/.env; hermes secrets and hermes egress manage and isolate them.', x: 2, y: 1 },
   { id: 'cron', label: 'Cron', desc: 'Scheduled jobs that run autonomously and deliver results to your channels.', x: 2, y: 2 },
   { id: 'output', label: 'Live Output', desc: 'Research, coding, content, and operations — delivered with receipts.', x: 3, y: 1 },
 ]
@@ -14,10 +14,10 @@ const nodes = [
 const edges = [
   { from: 'machine', to: 'core' },
   { from: 'core', to: 'skills' },
-  { from: 'core', to: 'vault' },
+  { from: 'core', to: 'secrets' },
   { from: 'core', to: 'cron' },
   { from: 'skills', to: 'output' },
-  { from: 'vault', to: 'output' },
+  { from: 'secrets', to: 'output' },
   { from: 'cron', to: 'output' },
 ]
 

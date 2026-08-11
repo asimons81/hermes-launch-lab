@@ -5,7 +5,7 @@ import { SkillCatalog } from '@/components/SkillCatalog'
 
 const comparison = [
   { feature: 'Hands-on setup pairing', hermes: true, claude: false, cursor: false, diy: false },
-  { feature: 'Brokered vault security', hermes: true, claude: false, cursor: false, diy: false },
+  { feature: 'Credential security & sandbox hardening', hermes: true, claude: false, cursor: false, diy: false },
   { feature: 'Persistent compounding skills', hermes: true, claude: 'Partial', cursor: false, diy: false },
   { feature: 'Tested production workflow', hermes: true, claude: false, cursor: false, diy: false },
   { feature: 'Works on any OS (Linux/macOS/Win)', hermes: true, claude: true, cursor: true, diy: true },
@@ -73,12 +73,13 @@ export default function Features() {
 
         {/* Interactive Skill Library Section */}
         <section style={{ marginTop: 64 }}>
-          <div className="eyebrow">PERSISTENT SKILL LIBRARY</div>
+          <div className="eyebrow">SKILL.MD FORMAT</div>
           <h2 style={{ letterSpacing: '-0.04em', fontSize: 32, marginTop: 4, marginBottom: 8 }}>
-            Inspect & Load Real Skills
+            Inspect Example Skill Manifests
           </h2>
           <p style={{ color: 'var(--muted)', fontSize: 16, maxWidth: 640 }}>
-            Filter through real Hermes Agent skills. Inspect manifest declarations or copy CLI load commands directly into your terminal.
+            These are illustrative example manifests — not skills shipped with Hermes. They show the SKILL.md format, and the copy
+            buttons run real <code>hermes skills</code> and <code>hermes cron</code> commands you can use on your own machine.
           </p>
           <SkillCatalog />
         </section>

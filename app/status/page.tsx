@@ -52,7 +52,7 @@ export default function StatusPage() {
     { name: 'Booking & Checkout (Stripe)', status: 'Operational', detail: 'Stripe Webhooks active' },
     { name: 'Transactional Email (Resend)', status: 'Operational', detail: 'DKIM / SPF verified' },
     { name: 'Prisma PostgreSQL Database', status: 'Operational', detail: 'Neon serverless pool' },
-    { name: 'Hermes Local Fleet Engine', status: 'Operational', detail: 'v0.19.0 Arch Linux host' },
+    { name: 'Hermes Agent CLI (operator host)', status: 'Operational', detail: 'v0.20.0 verified via hermes doctor' },
   ]
 
   return (

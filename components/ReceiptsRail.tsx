@@ -2,15 +2,20 @@
 
 import { useEffect, useState } from 'react'
 
+/**
+ * ILLUSTRATIVE DEMO FEED — not live telemetry. Events are generic
+ * examples of what Hermes activity receipts look like; every command
+ * referenced is a real Hermes v0.20.0 command.
+ */
 const receipts = [
-  { time: '14:32', type: 'skill', text: 'hermes-vault loaded · policy verified', status: 'ok' },
-  { time: '14:28', type: 'cron', text: 'content-radar deployed · first run queued', status: 'ok' },
-  { time: '14:15', type: 'workflow', text: 'booking-pipeline tested · Stripe webhook confirmed', status: 'ok' },
-  { time: '14:02', type: 'vault', text: 'credential lease issued · provider: openrouter', status: 'ok' },
-  { time: '13:47', type: 'skill', text: 'github-pr-workflow loaded · 12 steps indexed', status: 'ok' },
-  { time: '13:30', type: 'cron', text: 'deal-hunter executed · 3 candidates found', status: 'ok' },
-  { time: '13:12', type: 'workflow', text: 'intake-form tested · validation passed', status: 'ok' },
-  { time: '12:58', type: 'vault', text: 'lease renewed · provider: anthropic', status: 'ok' },
+  { time: '14:32', type: 'skill', text: 'hermes skills list · catalog verified', status: 'ok' },
+  { time: '14:28', type: 'cron', text: 'hermes cron create "every 2h" · job scheduled', status: 'ok' },
+  { time: '14:15', type: 'workflow', text: 'hermes doctor · diagnostics passed', status: 'ok' },
+  { time: '14:02', type: 'security', text: 'hermes secrets bitwarden status · token valid', status: 'ok' },
+  { time: '13:47', type: 'skill', text: 'hermes skills install openai/skills/k8s · scanned', status: 'ok' },
+  { time: '13:30', type: 'cron', text: 'hermes cron list · jobs reviewed', status: 'ok' },
+  { time: '13:12', type: 'workflow', text: 'hermes verify · build/test/start recipe checked', status: 'ok' },
+  { time: '12:58', type: 'security', text: 'hermes egress status · proxy mappings listed', status: 'ok' },
 ]
 
 export function ReceiptsRail() {
@@ -33,10 +38,10 @@ export function ReceiptsRail() {
   )
 
   return (
-    <div className="receipts-rail" aria-label="Live agent activity">
+    <div className="receipts-rail" aria-label="Demo Hermes activity feed (illustrative)">
       <div className="receipts-rail__label">
         <span className="receipts-rail__pulse" />
-        <span>SYSTEM ACTIVITY</span>
+        <span>DEMO ACTIVITY (ILLUSTRATIVE)</span>
       </div>
       <div className="receipts-rail__items">
         {visibleReceipts.map((r, i) => (

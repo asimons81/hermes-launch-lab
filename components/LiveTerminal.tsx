@@ -2,63 +2,44 @@
 
 import { useEffect, useState, useRef } from 'react'
 
+/**
+ * SIMULATED DEMO terminal. Every command shown is a real Hermes v0.20.0
+ * command; the output lines are illustrative placeholders, not real
+ * program output. The component is labeled as a simulation in the UI.
+ */
 const sessionScript = [
-  { type: 'cmd', text: 'hermes setup' },
-  { type: 'system', text: 'Detecting environment... Linux 7.1.3 (x86_64)' },
-  { type: 'system', text: 'Installing Hermes Agent v0.19.0... ✓' },
-  { type: 'system', text: 'Loading skill catalog... 55 skills indexed ✓' },
-  { type: 'cmd', text: 'hermes skill load hermes-vault' },
-  { type: 'system', text: 'Vault initialized. Policy: brokered, lease-based.' },
-  { type: 'system', text: 'Credential leases: 0 active, 3 available.' },
-  { type: 'cmd', text: 'hermes cron create "Daily content radar"' },
-  { type: 'system', text: 'Schedule: every 2h · Deliver: telegram' },
-  { type: 'system', text: 'First run queued. ✓' },
-  { type: 'cmd', text: 'hermes workflow test "booking-pipeline"' },
-  { type: 'system', text: 'Stripe webhook... ✓ verified' },
-  { type: 'system', text: 'Email relay... ✓ confirmed' },
-  { type: 'system', text: 'Prisma connection... ✓ alive' },
-  { type: 'result', text: '✓ Workflow tested. Session complete.' },
+  { type: 'cmd', text: 'hermes setup --portal' },
+  { type: 'system', text: 'Launching interactive setup wizard (simulated)' },
+  { type: 'system', text: 'Nous Portal OAuth + Tool Gateway configuration' },
+  { type: 'cmd', text: 'hermes skills list' },
+  { type: 'system', text: 'Installed skills shown in a table (simulated)' },
+  { type: 'cmd', text: 'hermes cron create "every 2h" "Check server status"' },
+  { type: 'system', text: 'Scheduled job created (simulated)' },
+  { type: 'cmd', text: 'hermes doctor' },
+  { type: 'system', text: 'Static checks: config, dependencies, auth (simulated)' },
+  { type: 'result', text: '✓ Demo complete — run these commands on your own machine.' },
 ]
 
 const interactiveCommands: Record<string, { type: 'cmd' | 'system' | 'result'; text: string }[]> = {
-  'hermes skills': [
-    { type: 'cmd', text: 'hermes skills' },
-    { type: 'system', text: 'Active Memory Engine: SQLite + Vector Index' },
-    { type: 'system', text: '┌──────────────────────┬─────────────┬─────────────────┐' },
-    { type: 'system', text: '│ Skill Name           │ Version     │ Status          │' },
-    { type: 'system', text: '├──────────────────────┼─────────────┼─────────────────┤' },
-    { type: 'system', text: '│ hermes-vault         │ v1.4.0      │ READY           │' },
-    { type: 'system', text: '│ github-pr-workflow   │ v2.1.2      │ ACTIVE          │' },
-    { type: 'system', text: '│ content-radar        │ v0.9.5      │ CRON QUEUED     │' },
-    { type: 'system', text: '│ deal-hunter          │ v1.1.0      │ READY           │' },
-    { type: 'system', text: '└──────────────────────┴─────────────┴─────────────────┘' },
-    { type: 'result', text: '✓ 55 total skills available in local catalog.' },
+  'hermes skills list': [
+    { type: 'cmd', text: 'hermes skills list' },
+    { type: 'system', text: 'Installed skills are listed here (simulated demo output)' },
+    { type: 'result', text: '✓ Real command — try it in your own terminal.' },
   ],
-  'hermes vault status': [
-    { type: 'cmd', text: 'hermes vault status' },
-    { type: 'system', text: 'Vault Security Broker: BROKERED LEASE ENGINE' },
-    { type: 'system', text: '→ Storage: Local encrypted keyring (ChaCha20-Poly1305)' },
-    { type: 'system', text: '→ Active Leases: 0 (No active background leases)' },
-    { type: 'system', text: '→ Rate Limit: 100 req/min per key' },
-    { type: 'system', text: '→ Policy Gating: Enabled (No raw keys emitted to logs)' },
-    { type: 'result', text: '✓ Vault isolation verified. Secrets remain local.' },
+  'hermes doctor': [
+    { type: 'cmd', text: 'hermes doctor' },
+    { type: 'system', text: 'Runs static diagnostics for your Hermes install (simulated)' },
+    { type: 'result', text: '✓ Real command — try it in your own terminal.' },
   ],
-  'hermes workflow test': [
-    { type: 'cmd', text: 'hermes workflow test "launch-lab"' },
-    { type: 'system', text: 'Testing integration endpoints...' },
-    { type: 'system', text: '→ Health API (/api/health)... 200 OK (14ms)' },
-    { type: 'system', text: '→ Stripe webhook secret... Configured ✓' },
-    { type: 'system', text: '→ Resend email engine... Verified ✓' },
-    { type: 'system', text: '→ Prisma PostgreSQL pool... Connected (2ms)' },
-    { type: 'result', text: '✓ All systems operational. 0 errors detected.' },
+  'hermes cron list': [
+    { type: 'cmd', text: 'hermes cron list' },
+    { type: 'system', text: 'Shows your scheduled jobs (simulated demo output)' },
+    { type: 'result', text: '✓ Real command — try it in your own terminal.' },
   ],
-  'hermes benchmark': [
-    { type: 'cmd', text: 'hermes benchmark' },
-    { type: 'system', text: 'Benchmarking Hermes local agent throughput...' },
-    { type: 'system', text: '→ Local LLM Context Window: 128,000 tokens' },
-    { type: 'system', text: '→ Tool Call Latency: 42ms' },
-    { type: 'system', text: '→ SQLite Vector Search: 1.2ms' },
-    { type: 'result', text: '✓ Fleet ready for production workloads.' },
+  'hermes status': [
+    { type: 'cmd', text: 'hermes status' },
+    { type: 'system', text: 'Shows provider keys and component status (simulated demo output)' },
+    { type: 'result', text: '✓ Real command — try it in your own terminal.' },
   ],
 }
 
@@ -130,7 +111,7 @@ export function LiveTerminal() {
   }
 
   return (
-    <div className="terminal" aria-label="Live simulated Hermes Agent session">
+    <div className="terminal" aria-label="Simulated Hermes Agent demo session">
       <div className="terminal__titlebar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <span className="terminal__dots">
@@ -139,7 +120,7 @@ export function LiveTerminal() {
             <span className="terminal__dot terminal__dot--green" />
           </span>
           <span className="terminal__title" style={{ fontSize: 11, fontFamily: 'var(--mono)', color: 'var(--muted)' }}>
-            {mode === 'auto' ? 'hermes-session — auto-demo' : 'hermes-interactive — sandbox'}
+            {mode === 'auto' ? 'hermes-session — auto-demo (simulated)' : 'hermes-interactive — sandbox (simulated)'}
           </span>
         </div>
         <div style={{ display: 'flex', gap: 6, fontSize: 11, fontFamily: 'var(--mono)' }}>
@@ -160,7 +141,7 @@ export function LiveTerminal() {
             onClick={() => {
               if (mode === 'auto') {
                 setMode('interactive')
-                setInteractiveLog(interactiveCommands['hermes skills'])
+                setInteractiveLog(interactiveCommands['hermes skills list'])
               }
             }}
             style={{
@@ -195,7 +176,7 @@ export function LiveTerminal() {
         ) : (
           <>
             <div className="terminal__line terminal__line--system" style={{ color: 'var(--gold)', marginBottom: 8 }}>
-              # INTERACTIVE SANDBOX — Click preset commands below to execute live
+              # INTERACTIVE DEMO — Click preset commands below to see simulated output
             </div>
             {interactiveLog.map((line, i) => {
               const prefix = line.type === 'cmd' ? '$ ' : line.type === 'result' ? '' : '→ '

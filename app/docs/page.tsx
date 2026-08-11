@@ -2,9 +2,9 @@ import Link from 'next/link'
 import { DocsLayout, Callout } from '@/components/DocsLayout'
 
 const docPages = [
-  { slug: 'quickstart', name: '1. Quickstart Guide', desc: 'Get Hermes installed, configured, and running in four practical steps.' },
-  { slug: 'skills', name: '2. Skills Reference', desc: 'Understand persistent memory skills, manifests, and compounding workflows.' },
-  { slug: 'vault', name: '3. Vault & Security', desc: 'Learn how lease-based credential brokering keeps your API keys isolated.' },
+  { slug: 'quickstart', name: '1. Quickstart Guide', desc: 'Install the official Hermes CLI, choose a provider, and verify the setup in four practical steps.' },
+  { slug: 'skills', name: '2. Skills Reference', desc: 'Understand on-demand skill documents, the SKILL.md format, and the real install commands.' },
+  { slug: 'vault', name: '3. Secrets & Security', desc: 'Learn how Hermes stores API keys, pulls secrets from external managers, and isolates sandboxes.' },
   { slug: 'cron', name: '4. Autonomous Cron & Loops', desc: 'Configure background loops and automated deliveries to Telegram or Discord.' },
 ]
 
