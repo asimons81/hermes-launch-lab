@@ -19,7 +19,8 @@ export default function Privacy() {
 
         <h3 style={{ marginTop: 24 }}>Your Rights</h3>
         <p style={{ color: 'var(--muted)', margin: 0 }}>
-          Request export or deletion anytime via the customer portal or by contacting Tony.
+          Request export or deletion anytime via the customer portal or the{' '}
+          <a href="/contact" style={{ color: 'var(--accent, inherit)' }}>Contact page</a>.
         </p>
       </div>
     </article>

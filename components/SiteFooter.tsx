@@ -15,7 +15,8 @@ export function SiteFooter() {
           <div className="eyebrow" style={{ color: 'var(--red-accent)', marginBottom: 6, fontSize: 10 }}>// SUITE</div>
           <a href="https://tonysimons.dev" style={{ color: 'var(--red-accent)' }}>Studio Portfolio ↗</a>
           <Link href="/book" style={{ color: 'var(--ink)' }}>Book Session ↗</Link>
-          <Link href="/intake">Diagnostic Intake</Link>
+          <Link href="/intake">Pre-Session Intake</Link>
+          <Link href="/contact">Contact</Link>
           <Link href="/portal">Client Portal</Link>
         </div>
         <div className="footer-links">
