@@ -154,6 +154,16 @@ describe('security headers', () => {
     expect(config).toContain("base-uri 'self'")
   })
 
+  it('allows Stripe hosted checkout as a form-action target', () => {
+    // The booking form POSTs to /api/bookings, which 303-redirects to
+    // checkout.stripe.com. form-action 'self' blocks that navigation
+    // (browser refuses the external redirect) — verified with a live
+    // browser repro: page with form-action 'self' stays put, without it
+    // lands on the target. Stripe checkout must be explicitly allowed.
+    const config = read('next.config.ts')
+    expect(config).toMatch(/form-action 'self' https:\/\/checkout\.stripe\.com/)
+  })
+
   it('never emits wildcard CORS on documents', () => {
     // Source must not contain a wildcard ACAO anywhere.
     const config = read('next.config.ts')

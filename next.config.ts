@@ -24,7 +24,7 @@ const nextConfig: NextConfig = {
       "frame-src 'self'",
       "frame-ancestors 'self'",
       "base-uri 'self'",
-      "form-action 'self'",
+      "form-action 'self' https://checkout.stripe.com",
       "object-src 'none'",
     ].join('; ')
 
