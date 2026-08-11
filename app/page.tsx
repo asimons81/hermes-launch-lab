@@ -64,7 +64,7 @@ export default function Home() {
               One agent. Your machine. Real output.
             </h2>
             <p style={{ color: 'var(--muted)', fontSize: 17, maxWidth: 540, margin: '16px 0 0' }}>
-              Hermes runs on your hardware and coordinates work across skills, vault, and scheduled jobs. Tap a node to see what it does.
+              Hermes runs on your hardware and coordinates work across skills, secrets, and scheduled jobs. Tap a node to see what it does.
             </p>
           </div>
           <TopoGraph />

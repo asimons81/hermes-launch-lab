@@ -7,7 +7,7 @@ export default function Terms() {
       <div className="card" style={{ marginTop: 24 }}>
         <h3 style={{ marginTop: 0 }}>1. Scope of Work</h3>
         <p style={{ color: 'var(--muted)' }}>
-          Hands-on technical consulting for Hermes Agent configuration, local tool calling, vault setup, and scheduled automation workflows.
+          Hands-on technical consulting for Hermes Agent configuration, local tool calling, credential security setup, and scheduled automation workflows.
           Each session delivers the scope described on the service you booked — a defined deliverable, not an ongoing support contract.
           Follow-up and support windows are as stated on the service page and expire when stated.
         </p>

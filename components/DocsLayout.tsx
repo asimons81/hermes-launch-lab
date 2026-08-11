@@ -16,7 +16,7 @@ const DOC_LINKS = [
   { href: '/docs', label: 'Documentation Index' },
   { href: '/docs/quickstart', label: '1. Quickstart Guide' },
   { href: '/docs/skills', label: '2. Skills Reference' },
-  { href: '/docs/vault', label: '3. Vault & Security' },
+  { href: '/docs/vault', label: '3. Secrets & Security' },
   { href: '/docs/cron', label: '4. Autonomous Cron & Loops' },
 ]
 

@@ -8,7 +8,7 @@ export function SiteFooter() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <BrandMark />
           <p style={{ color: 'var(--muted)', fontSize: 14, lineHeight: 1.5, margin: 0, maxWidth: 320 }}>
-            Private, hands-on Hermes Agent consulting, zero-trust vault setups &amp; custom agent infrastructure.
+            Private, hands-on Hermes Agent consulting, credential security setups &amp; custom agent infrastructure.
           </p>
         </div>
         <div className="footer-links">
