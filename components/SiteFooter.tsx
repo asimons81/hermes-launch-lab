@@ -35,9 +35,8 @@ export function SiteFooter() {
       </div>
       <div className="shell site-footer__fineprint" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
         <span>© {new Date().getFullYear()} Tony Simons · Independent Studio service. Not affiliated with Nous Research.</span>
-        <span style={{ color: 'var(--red-accent)', display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'var(--mono)', fontSize: 11 }}>
-          <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--red-accent)', boxShadow: '0 0 6px var(--red-accent)' }} />
-          All Systems Operational
+        <span style={{ color: 'var(--red-accent)', fontFamily: 'var(--mono)', fontSize: 11 }}>
+          Contact: <a href="mailto:tony@tonyreviewsthings.com" style={{ color: 'var(--red-accent)', textDecoration: 'underline' }}>tony@tonyreviewsthings.com</a>
         </span>
       </div>
     </footer>

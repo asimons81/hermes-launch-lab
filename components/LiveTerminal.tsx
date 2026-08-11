@@ -5,8 +5,8 @@ import { useEffect, useState, useRef } from 'react'
 const sessionScript = [
   { type: 'cmd', text: 'hermes setup' },
   { type: 'system', text: 'Detecting environment... Linux 7.1.3 (x86_64)' },
-  { type: 'system', text: 'Installing Hermes Agent v0.19.0... ✓' },
-  { type: 'system', text: 'Loading skill catalog... 55 skills indexed ✓' },
+  { type: 'system', text: 'Installing Hermes Agent... ✓' },
+  { type: 'system', text: 'Loading skill catalog... ✓' },
   { type: 'cmd', text: 'hermes skill load hermes-vault' },
   { type: 'system', text: 'Vault initialized. Policy: brokered, lease-based.' },
   { type: 'system', text: 'Credential leases: 0 active, 3 available.' },
@@ -32,7 +32,7 @@ const interactiveCommands: Record<string, { type: 'cmd' | 'system' | 'result'; t
     { type: 'system', text: '│ content-radar        │ v0.9.5      │ CRON QUEUED     │' },
     { type: 'system', text: '│ deal-hunter          │ v1.1.0      │ READY           │' },
     { type: 'system', text: '└──────────────────────┴─────────────┴─────────────────┘' },
-    { type: 'result', text: '✓ 55 total skills available in local catalog.' },
+    { type: 'result', text: '✓ Example catalog loaded.' },
   ],
   'hermes vault status': [
     { type: 'cmd', text: 'hermes vault status' },
@@ -130,7 +130,7 @@ export function LiveTerminal() {
   }
 
   return (
-    <div className="terminal" aria-label="Live simulated Hermes Agent session">
+    <div className="terminal" aria-label="Simulated Hermes Agent session — illustrative demo output">
       <div className="terminal__titlebar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <span className="terminal__dots">
@@ -175,6 +175,10 @@ export function LiveTerminal() {
             INTERACTIVE
           </button>
         </div>
+      </div>
+
+      <div style={{ fontSize: 10, fontFamily: 'var(--mono)', color: 'var(--muted)', padding: '4px 12px', background: '#14171D', borderTop: '1px solid var(--line)', textAlign: 'center' }}>
+        SIMULATED DEMO OUTPUT — NOT LIVE TELEMETRY
       </div>
 
       <div className="terminal__body" ref={scrollRef} style={{ minHeight: 280, maxHeight: 320, overflowY: 'auto' }}>

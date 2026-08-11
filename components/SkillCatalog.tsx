@@ -167,7 +167,7 @@ export function SkillCatalog() {
         <div style={{ position: 'relative', minWidth: 240 }}>
           <input
             type="text"
-            placeholder="Search 55+ skills..."
+            placeholder="Search example skills..."
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             style={{

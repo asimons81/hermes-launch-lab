@@ -33,10 +33,10 @@ export function ReceiptsRail() {
   )
 
   return (
-    <div className="receipts-rail" aria-label="Live agent activity">
+    <div className="receipts-rail" aria-label="Illustrative session activity sample">
       <div className="receipts-rail__label">
         <span className="receipts-rail__pulse" />
-        <span>SYSTEM ACTIVITY</span>
+        <span>SAMPLE SESSION ACTIVITY</span>
       </div>
       <div className="receipts-rail__items">
         {visibleReceipts.map((r, i) => (
@@ -48,6 +48,9 @@ export function ReceiptsRail() {
           </div>
         ))}
       </div>
+      <p style={{ margin: '8px 0 0', fontSize: 11, fontFamily: 'var(--mono)', color: 'var(--muted)' }}>
+        Illustrative sample — not live activity.
+      </p>
     </div>
   )
 }

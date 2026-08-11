@@ -4,8 +4,8 @@ type StatusBarProps = {
 
 const defaultItems = [
   { label: 'OS', value: 'ANY', status: 'ok' as const },
-  { label: 'SESSION', value: 'READY', status: 'ok' as const },
-  { label: 'SECURITY', value: 'BROKERED', status: 'ok' as const },
+  { label: 'FORMAT', value: '1-ON-1', status: 'ok' as const },
+  { label: 'SECURITY', value: 'LOCAL-FIRST', status: 'ok' as const },
 ]
 
 export function StatusBar({ items = defaultItems }: StatusBarProps) {
