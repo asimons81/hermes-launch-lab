@@ -6,7 +6,7 @@ import { RoiCalculator } from '@/components/RoiCalculator'
 const services = [
   { slug: 'strategy', name: 'Hermes Strategy Session', price: 99, durationMin: 60, description: 'Fit assessment, model recommendations, hosting guidance, security discussion, and a written action plan.' },
   { slug: 'launch', name: 'Hermes Launch Session', price: 299, durationMin: 90, description: 'Installation or repair, model configuration, channels, memory, permissions, and one tested workflow.' },
-  { slug: 'custom', name: 'Custom Hermes Build', price: 600, durationMin: 120, description: 'VPS deployment, integrations, custom skills, and scheduled automations. Application required.' }
+  { slug: 'custom', name: 'Custom Hermes Build', price: 600, durationMin: 120, description: 'VPS deployment, integrations, custom skills, and scheduled automations. Custom builds are scoped through a conversation — contact Launch Lab to apply.' }
 ]
 
 export default function Pricing() {

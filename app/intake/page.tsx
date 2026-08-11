@@ -2,10 +2,11 @@ import { auth } from "@/lib/auth"
 import { redirect } from "next/navigation"
 import { SiteHeader } from "@/components/SiteHeader"
 import { SiteFooter } from "@/components/SiteFooter"
+import { buildSignInUrl } from "@/lib/auth-redirect"
 
 export default async function Intake() {
   const session = await auth()
-  if (!session) redirect('/auth/signin')
+  if (!session) redirect(buildSignInUrl({ callbackUrl: '/intake' }))
 
   return (
     <>
