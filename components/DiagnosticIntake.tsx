@@ -30,7 +30,7 @@ function recommend(answers: Answers): { slug: string; name: string; price: strin
       slug: 'custom',
       name: 'Custom Hermes Build',
       price: '$600+',
-      why: 'You want the full system — VPS deployment, integrations, custom skills, and scheduled automations. This is a 120-minute working session that leaves you with a production setup.',
+      why: 'You want the full system — VPS deployment, integrations, custom skills, and scheduled automations. This is a 120-minute working session that leaves you with a production setup. Application required before booking.',
       prep: 'Bring your server or VPS details, API keys for services you want integrated, and your automation goals.',
     }
   }
@@ -80,7 +80,7 @@ export function DiagnosticIntake() {
             <p className="offer__label">BUILT TO FIT</p>
             <h3>Custom build</h3>
             <p className="offer__price">$600+</p>
-            <p>120 min · VPS, integrations, custom skills, and scheduled automations.</p>
+            <p>120 min · VPS, integrations, custom skills, and scheduled automations. Application required.</p>
             <Link className="offer__link" href="/book?service=custom">Choose this path <span>→</span></Link>
           </article>
         </div>

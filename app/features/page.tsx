@@ -7,19 +7,9 @@ import { SkillCatalog } from '@/components/SkillCatalog'
 export const metadata: Metadata = {
   title: 'What is Hermes Agent',
   description:
-    'Hermes is an autonomous AI agent that runs on your hardware — Windows, macOS, or Linux. See how hands-on setup, brokered vault security, and tested workflows work.',
+    'Hermes is an autonomous AI agent that runs on your hardware — Windows, macOS, or Linux. See how hands-on setup, credential security, and tested workflows work.',
   alternates: { canonical: '/features' },
 }
-
-const comparison = [
-  { feature: 'Hands-on setup pairing', hermes: true, claude: false, cursor: false, diy: false },
-  { feature: 'Credential security & sandbox hardening', hermes: true, claude: false, cursor: false, diy: false },
-  { feature: 'Persistent compounding skills', hermes: true, claude: 'Partial', cursor: false, diy: false },
-  { feature: 'Tested production workflow', hermes: true, claude: false, cursor: false, diy: false },
-  { feature: 'Works on any OS (Linux/macOS/Win)', hermes: true, claude: true, cursor: true, diy: true },
-  { feature: '1-on-1 expert guidance', hermes: true, claude: false, cursor: false, diy: false },
-  { feature: 'Autonomous background cron', hermes: true, claude: false, cursor: false, diy: 'Manual' },
-]
 
 function Cell({ value }: { value: boolean | string }) {
   if (value === true) return <span style={{ color: 'var(--term-green)', fontWeight: 'bold' }}>✓</span>
@@ -83,50 +73,91 @@ export default function Features() {
         <section style={{ marginTop: 64 }}>
           <div className="eyebrow">SKILL.MD FORMAT</div>
           <h2 style={{ letterSpacing: '-0.04em', fontSize: 32, marginTop: 4, marginBottom: 8 }}>
-            Inspect Example Skill Manifests
+            Browse Example Skills
           </h2>
           <p style={{ color: 'var(--muted)', fontSize: 16, maxWidth: 640 }}>
-            These are illustrative example manifests — not skills shipped with Hermes. They show the SKILL.md format, and the copy
-            buttons run real <code>hermes skills</code> and <code>hermes cron</code> commands you can use on your own machine.
+            Representative examples of the kind of Hermes skills that can be loaded and persisted. Manifests shown are
+            illustrative, not a live catalog of every skill installed on a machine.
           </p>
           <SkillCatalog />
         </section>
 
         {/* Comparison Matrix */}
         <section style={{ marginTop: 64 }}>
-          <p className="eyebrow">HOW IT COMPARES</p>
+          <p className="eyebrow">CHOOSE A PATH</p>
           <h2 style={{ letterSpacing: '-0.04em', fontSize: 32, marginTop: 4, marginBottom: 24 }}>
-            Hermes Consulting vs. Alternatives
+            How the sessions compare
           </h2>
           <div className="pane" style={{ overflowX: 'auto' }}>
             <div className="pane__titlebar">
-              <span className="pane__title">COMPARISON MATRIX</span>
+              <span className="pane__title">SESSION COMPARISON</span>
             </div>
             <div className="pane__body" style={{ padding: 0 }}>
               <table className="table" style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--mono)', fontSize: 13 }}>
                 <thead>
                   <tr style={{ borderBottom: '1px solid rgba(242,240,233,0.15)', background: 'rgba(10,11,9,0.8)' }}>
-                    <th style={{ textAlign: 'left', padding: '12px 16px', color: 'var(--muted)' }}>Feature / Capability</th>
-                    <th style={{ textAlign: 'center', padding: '12px 16px', color: 'var(--gold)' }}>Hermes Consulting</th>
-                    <th style={{ textAlign: 'center', padding: '12px 16px', color: 'var(--muted)' }}>Claude Code</th>
-                    <th style={{ textAlign: 'center', padding: '12px 16px', color: 'var(--muted)' }}>Cursor</th>
-                    <th style={{ textAlign: 'center', padding: '12px 16px', color: 'var(--muted)' }}>DIY</th>
+                    <th style={{ textAlign: 'left', padding: '12px 16px', color: 'var(--muted)' }}>What&apos;s included</th>
+                    <th style={{ textAlign: 'center', padding: '12px 16px', color: 'var(--muted)' }}>Strategy ($99)</th>
+                    <th style={{ textAlign: 'center', padding: '12px 16px', color: 'var(--gold)' }}>Launch ($299)</th>
+                    <th style={{ textAlign: 'center', padding: '12px 16px', color: 'var(--muted)' }}>Custom ($600+)</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {comparison.map(row => (
-                    <tr key={row.feature} style={{ borderBottom: '1px solid rgba(242,240,233,0.08)' }}>
-                      <td style={{ padding: '12px 16px', color: 'var(--fg)', fontFamily: 'var(--sans)', fontWeight: 500 }}>{row.feature}</td>
-                      <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={row.hermes} /></td>
-                      <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={row.claude} /></td>
-                      <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={row.cursor} /></td>
-                      <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={row.diy} /></td>
-                    </tr>
-                  ))}
+                  <tr style={{ borderBottom: '1px solid rgba(242,240,233,0.08)' }}>
+                    <td style={{ padding: '12px 16px', color: 'var(--fg)', fontFamily: 'var(--sans)', fontWeight: 500 }}>Duration</td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}>60 min</td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}>90 min</td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}>120 min</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid rgba(242,240,233,0.08)' }}>
+                    <td style={{ padding: '12px 16px', color: 'var(--fg)', fontFamily: 'var(--sans)', fontWeight: 500 }}>Written action plan</td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={true} /></td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={false} /></td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={false} /></td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid rgba(242,240,233,0.08)' }}>
+                    <td style={{ padding: '12px 16px', color: 'var(--fg)', fontFamily: 'var(--sans)', fontWeight: 500 }}>Hands-on installation or repair</td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={false} /></td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={true} /></td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={true} /></td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid rgba(242,240,233,0.08)' }}>
+                    <td style={{ padding: '12px 16px', color: 'var(--fg)', fontFamily: 'var(--sans)', fontWeight: 500 }}>Configuration, memory &amp; permissions</td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={false} /></td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={true} /></td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={true} /></td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid rgba(242,240,233,0.08)' }}>
+                    <td style={{ padding: '12px 16px', color: 'var(--fg)', fontFamily: 'var(--sans)', fontWeight: 500 }}>One tested workflow</td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={false} /></td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={true} /></td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={false} /></td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid rgba(242,240,233,0.08)' }}>
+                    <td style={{ padding: '12px 16px', color: 'var(--fg)', fontFamily: 'var(--sans)', fontWeight: 500 }}>VPS deployment, integrations &amp; automations</td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={false} /></td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={false} /></td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={true} /></td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid rgba(242,240,233,0.08)' }}>
+                    <td style={{ padding: '12px 16px', color: 'var(--fg)', fontFamily: 'var(--sans)', fontWeight: 500 }}>7-day follow-up support</td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={false} /></td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={true} /></td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={true} /></td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: '12px 16px', color: 'var(--fg)', fontFamily: 'var(--sans)', fontWeight: 500 }}>Application required</td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={false} /></td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={false} /></td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}><Cell value={true} /></td>
+                  </tr>
                 </tbody>
               </table>
             </div>
           </div>
+          <p style={{ marginTop: 12, color: 'var(--muted)', fontSize: 13, fontFamily: 'var(--mono)' }}>
+            Details match the service descriptions on the pricing page.
+          </p>
         </section>
 
         <section style={{ marginTop: 48, marginBottom: 32, textAlign: 'center' }}>

@@ -53,6 +53,9 @@ export function ReceiptsRail() {
           </div>
         ))}
       </div>
+      <p style={{ margin: '8px 0 0', fontSize: 11, fontFamily: 'var(--mono)', color: 'var(--muted)' }}>
+        Illustrative sample — not live activity.
+      </p>
     </div>
   )
 }

@@ -18,7 +18,14 @@ export default function Privacy() {
           <li>Email, name, time zone for booking and communication.</li>
           <li>Technical environment details for service delivery (OS, Hermes version).</li>
           <li>Payment metadata via Stripe (no credit card details stored).</li>
+          <li>Intake answers you choose to submit before a session (goals, blockers, comfort level).</li>
         </ul>
+
+        <h3 style={{ marginTop: 24 }}>Service Providers</h3>
+        <p style={{ color: 'var(--muted)', margin: 0 }}>
+          This site is hosted on Vercel, uses a Neon PostgreSQL database, processes payments through Stripe, and sends
+          transactional email through Resend. Each provider processes only the data needed for its function.
+        </p>
 
         <h3 style={{ marginTop: 24 }}>Retention</h3>
         <p style={{ color: 'var(--muted)', margin: 0 }}>
@@ -28,7 +35,9 @@ export default function Privacy() {
         <h3 style={{ marginTop: 24 }}>Your Rights</h3>
         <p style={{ color: 'var(--muted)', margin: 0 }}>
           Request export or deletion anytime via the customer portal or the{' '}
-          <a href="/contact" style={{ color: 'var(--accent, inherit)' }}>Contact page</a>.
+          <a href="/contact" style={{ color: 'var(--accent, inherit)' }}>Contact page</a>{' '}
+          or by emailing{' '}
+          <a href="mailto:tony@tonyreviewsthings.com" style={{ color: 'var(--accent, inherit)' }}>tony@tonyreviewsthings.com</a>.
         </p>
       </div>
     </article>

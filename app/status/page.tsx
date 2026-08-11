@@ -14,7 +14,7 @@ export default function StatusPage() {
   const [metrics, setMetrics] = useState<HealthMetrics>({
     status: 'ok',
     latencyMs: null,
-    timestamp: new Date().toISOString(),
+    timestamp: new Date().toLocaleTimeString(),
   })
   const [isPinging, setIsPinging] = useState(false)
 
@@ -46,13 +46,19 @@ export default function StatusPage() {
     return () => clearInterval(interval)
   }, [])
 
-  const services = [
-    { name: 'Public Web Atelier (Vercel)', status: 'Operational', detail: 'Edge CDN + SSL' },
-    { name: 'Health Endpoint (/api/health)', status: metrics.status === 'ok' ? 'Operational' : 'Degraded', detail: `${metrics.latencyMs ?? 14}ms response` },
-    { name: 'Booking & Checkout (Stripe)', status: 'Operational', detail: 'Stripe Webhooks active' },
-    { name: 'Transactional Email (Resend)', status: 'Operational', detail: 'DKIM / SPF verified' },
-    { name: 'Prisma PostgreSQL Database', status: 'Operational', detail: 'Neon serverless pool' },
-    { name: 'Hermes Agent CLI (operator host)', status: 'Operational', detail: 'v0.20.0 verified via hermes doctor' },
+  const healthOk = metrics.status === 'ok'
+
+  // Only claims backed by the live /api/health probe (app + database round-trip).
+  const verified = [
+    { name: 'Health Endpoint (/api/health)', status: healthOk ? 'Operational' : 'Degraded', detail: healthOk ? (metrics.latencyMs !== null ? `${metrics.latencyMs}ms response` : 'responding') : 'not responding' },
+    { name: 'Application & Database', status: healthOk ? 'Operational' : 'Degraded', detail: healthOk ? 'SELECT 1 via Prisma' : 'database check failing' },
+  ]
+
+  // Components this page does not probe. We state the boundary instead of guessing.
+  const unmonitored = [
+    { name: 'Stripe Checkout & Webhooks', detail: 'Not monitored from this page' },
+    { name: 'Resend Transactional Email', detail: 'Not monitored from this page' },
+    { name: 'Vercel Edge CDN / SSL', detail: 'Not monitored from this page' },
   ]
 
   return (
@@ -62,7 +68,7 @@ export default function StatusPage() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
           <div>
             <p className="eyebrow">SYSTEM TELEMETRY</p>
-            <h1 className="page-title" style={{ margin: 0 }}>All systems operational.</h1>
+            <h1 className="page-title" style={{ margin: 0 }}>Health check status.</h1>
           </div>
           <button
             type="button"
@@ -84,19 +90,21 @@ export default function StatusPage() {
 
         <div className="pane" style={{ marginBottom: 32 }}>
           <div className="pane__titlebar" style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span className="pane__title">LIVE METRICS TELEMETRY</span>
-            <span className="pane__status pane__status--live">● REALTIME</span>
+            <span className="pane__title">HEALTH METRICS</span>
+            <span className="pane__status pane__status--live">● {isPinging ? 'CHECKING' : 'LIVE POLL'}</span>
           </div>
           <div className="pane__body status-metrics" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, textAlign: 'center' }}>
             <div style={{ padding: 12, background: 'rgba(10,11,9,0.8)', border: '1px solid rgba(242,240,233,0.1)' }}>
               <div style={{ fontSize: 11, fontFamily: 'var(--mono)', color: 'var(--muted)' }}>LATENCY</div>
               <div style={{ fontSize: 24, fontFamily: 'var(--mono)', color: 'var(--term-green)', marginTop: 4 }}>
-                {metrics.latencyMs !== null ? `${metrics.latencyMs}ms` : '14ms'}
+                {metrics.latencyMs !== null ? `${metrics.latencyMs}ms` : '—'}
               </div>
             </div>
             <div style={{ padding: 12, background: 'rgba(10,11,9,0.8)', border: '1px solid rgba(242,240,233,0.1)' }}>
-              <div style={{ fontSize: 11, fontFamily: 'var(--mono)', color: 'var(--muted)' }}>UPTIME (30D)</div>
-              <div style={{ fontSize: 24, fontFamily: 'var(--mono)', color: 'var(--gold)', marginTop: 4 }}>99.98%</div>
+              <div style={{ fontSize: 11, fontFamily: 'var(--mono)', color: 'var(--muted)' }}>STATUS</div>
+              <div style={{ fontSize: 24, fontFamily: 'var(--mono)', color: healthOk ? 'var(--term-green)' : 'var(--red-accent)', marginTop: 4 }}>
+                {healthOk ? 'OK' : 'ERROR'}
+              </div>
             </div>
             <div style={{ padding: 12, background: 'rgba(10,11,9,0.8)', border: '1px solid rgba(242,240,233,0.1)' }}>
               <div style={{ fontSize: 11, fontFamily: 'var(--mono)', color: 'var(--muted)' }}>LAST CHECK</div>
@@ -109,10 +117,10 @@ export default function StatusPage() {
 
         <div className="pane">
           <div className="pane__titlebar">
-            <span className="pane__title">COMPONENT STATUS MATRIX</span>
+            <span className="pane__title">COMPONENT STATUS</span>
           </div>
           <div className="pane__body" style={{ padding: 0 }}>
-            {services.map((item, i) => (
+            {verified.map((item, i) => (
               <div
                 key={item.name}
                 style={{
@@ -120,15 +128,35 @@ export default function StatusPage() {
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   padding: '12px 16px',
-                  borderBottom: i < services.length - 1 ? '1px solid rgba(242,240,233,0.08)' : 'none',
+                  borderBottom: '1px solid rgba(242,240,233,0.08)',
                 }}
               >
                 <div>
                   <div style={{ fontSize: 14, fontWeight: 500, color: 'var(--fg)' }}>{item.name}</div>
                   <div style={{ fontSize: 11, fontFamily: 'var(--mono)', color: 'var(--muted)' }}>{item.detail}</div>
                 </div>
-                <span style={{ fontSize: 12, fontFamily: 'var(--mono)', color: 'var(--term-green)' }}>
+                <span style={{ fontSize: 12, fontFamily: 'var(--mono)', color: healthOk ? 'var(--term-green)' : 'var(--red-accent)' }}>
                   ● {item.status}
+                </span>
+              </div>
+            ))}
+            {unmonitored.map((item, i) => (
+              <div
+                key={item.name}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  padding: '12px 16px',
+                  borderBottom: i < unmonitored.length - 1 ? '1px solid rgba(242,240,233,0.08)' : 'none',
+                }}
+              >
+                <div>
+                  <div style={{ fontSize: 14, fontWeight: 500, color: 'var(--fg)' }}>{item.name}</div>
+                  <div style={{ fontSize: 11, fontFamily: 'var(--mono)', color: 'var(--muted)' }}>{item.detail}</div>
+                </div>
+                <span style={{ fontSize: 12, fontFamily: 'var(--mono)', color: 'var(--muted)' }}>
+                  ○ Not monitored
                 </span>
               </div>
             ))}
@@ -136,7 +164,8 @@ export default function StatusPage() {
         </div>
 
         <p style={{ marginTop: 24, color: 'var(--muted)', fontSize: 13, textAlign: 'center', fontFamily: 'var(--mono)' }}>
-          Automated uptime telemetry powered by Vercel Edge + <code style={{ color: 'var(--gold)' }}>/api/health</code>
+          This page polls <code style={{ color: 'var(--gold)' }}>/api/health</code> every 10 seconds. That endpoint
+          verifies the app and database respond. Stripe, Resend, and edge infrastructure are not probed here.
         </p>
       </main>
       <SiteFooter />

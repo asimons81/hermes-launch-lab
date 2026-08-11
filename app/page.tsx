@@ -25,7 +25,7 @@ export default function Home() {
           <div className="cockpit__copy">
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 14px', background: 'var(--red-soft)', border: '1px solid rgba(255, 42, 53, 0.15)', borderRadius: '100px', color: 'var(--red-accent)', fontFamily: 'var(--mono)', fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: 20 }}>
               <span style={{ width: 6, height: 6, background: 'var(--red-accent)', borderRadius: '50%', boxShadow: '0 0 8px var(--red-accent)' }} />
-              SYSTEM ACTIVE // HERMES LAUNCH LAB
+              HERMES LAUNCH LAB // INDEPENDENT CONSULTING
             </div>
             <h1>Get Hermes running.<br /><span className="accent">Leave with it working.</span></h1>
             <p className="cockpit__lede">
@@ -100,7 +100,7 @@ export default function Home() {
           <div className="pane shell closing__inner" style={{ padding: 48, background: 'var(--surface)', border: '1px solid var(--gold)' }}>
             <p className="eyebrow">READY WHEN YOU ARE</p>
             <h2 style={{ fontSize: 36, fontWeight: 700, margin: '8px 0 16px 0' }}>Build the first useful thing.</h2>
-            <p style={{ color: 'var(--muted)', fontSize: 17, maxWidth: 500, margin: '0 auto 24px auto' }}>Choose a session and we&apos;ll turn the starting point into a working system.</p>
+            <p style={{ color: 'var(--muted)', fontSize: 17, maxWidth: 500, margin: '0 auto 24px auto' }}>Choose a session and leave with working software — or, for strategy, a written action plan.</p>
             <Link href="/book" className="button button--primary" style={{ padding: '12px 32px', fontSize: 15 }}>Book a session <span>↗</span></Link>
           </div>
         </section>

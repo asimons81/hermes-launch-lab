@@ -111,7 +111,7 @@ export function LiveTerminal() {
   }
 
   return (
-    <div className="terminal" aria-label="Simulated Hermes Agent demo session">
+    <div className="terminal" aria-label="Simulated Hermes Agent session — illustrative demo output">
       <div className="terminal__titlebar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <span className="terminal__dots">
@@ -158,6 +158,10 @@ export function LiveTerminal() {
             INTERACTIVE
           </button>
         </div>
+      </div>
+
+      <div style={{ fontSize: 10, fontFamily: 'var(--mono)', color: 'var(--muted)', padding: '4px 12px', background: '#14171D', borderTop: '1px solid var(--line)', textAlign: 'center' }}>
+        SIMULATED DEMO OUTPUT — NOT LIVE TELEMETRY
       </div>
 
       <div className="terminal__body" ref={scrollRef} style={{ minHeight: 280, maxHeight: 320, overflowY: 'auto' }}>

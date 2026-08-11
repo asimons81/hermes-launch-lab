@@ -87,6 +87,11 @@ export function RoiCalculator() {
             </div>
           </div>
         </div>
+
+        <p style={{ marginTop: 16, color: 'var(--muted)', fontSize: 12, fontFamily: 'var(--mono)', lineHeight: 1.6 }}>
+          Assumes roughly 60% of the repetitive hours you enter become automatable with a configured agent — an
+          illustrative estimate, not a guarantee of savings. Adjust the sliders to match your own workflow.
+        </p>
       </div>
     </div>
   )
