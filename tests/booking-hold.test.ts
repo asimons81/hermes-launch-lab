@@ -40,6 +40,25 @@ describe('stripe webhook confirms the booking correctly', () => {
     expect(webhook).toMatch(/upsert/)
   })
 
+  it('re-books a cancelled hold row instead of violating the unique (startTime, serviceId) constraint', () => {
+    const route = read('app/api/bookings/route.ts')
+    // Stale-hold cleanup marks old pending rows 'cancelled' but they stay in
+    // the table — and @@unique([startTime, serviceId]) applies to all rows.
+    // A blind create on a re-booking therefore throws P2002 -> 500 (seen live).
+    // The route must find the cancelled row and update it back to pending.
+    expect(route).toMatch(/status: 'cancelled'/)
+    expect(route).toMatch(/findFirst/)
+    expect(route).toMatch(/prisma\.booking\.update/)
+    expect(route).toMatch(/status: 'pending'/)
+  })
+
+  it('resets the hold window when re-booking a cancelled row', () => {
+    const route = read('app/api/bookings/route.ts')
+    // Reusing a stale row without refreshing createdAt would make the new
+    // pending hold instantly look expired to the availability API.
+    expect(route).toMatch(/createdAt:\s*new Date\(\)/)
+  })
+
   it('releases the slot when Stripe reports the checkout session expired', () => {
     const webhook = read('app/api/webhooks/stripe/route.ts')
     expect(webhook).toMatch(/checkout\.session\.expired/)

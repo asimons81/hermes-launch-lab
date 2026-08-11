@@ -60,17 +60,29 @@ export async function POST(req: Request) {
   })
   if (conflict) return new Response('That slot was just taken — pick another time', { status: 409 })
 
-  const booking = await prisma.booking.create({
-    data: {
-      userId: session.user.id!,
-      serviceId,
-      startTime,
-      endTime,
-      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-      acceptedTermsVersion: TERMS_VERSION,
-      acceptedTermsAt: new Date()
-    }
+  // Re-booking a slot that had a stale hold: the old row was cancelled but
+  // still occupies the unique (startTime, serviceId) key — a blind create
+  // would throw P2002 (seen live as a 500). Reuse the cancelled row and
+  // reset its hold window instead.
+  const cancelled = await prisma.booking.findFirst({
+    where: { serviceId, startTime, status: 'cancelled' }
   })
+
+  const bookingData = {
+    userId: session.user.id!,
+    serviceId,
+    startTime,
+    endTime,
+    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    acceptedTermsVersion: TERMS_VERSION,
+    acceptedTermsAt: new Date(),
+    status: 'pending',
+    createdAt: new Date() // fresh hold window
+  }
+
+  const booking = cancelled
+    ? await prisma.booking.update({ where: { id: cancelled.id }, data: bookingData })
+    : await prisma.booking.create({ data: bookingData })
 
   const checkout = await stripe.checkout.sessions.create({
     mode: 'payment',
