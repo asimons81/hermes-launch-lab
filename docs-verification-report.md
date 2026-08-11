@@ -158,7 +158,12 @@ Subcommand: `audit`.
   - `npm run typecheck` — clean
   - `npm run lint` — clean (0 warnings)
   - `npm run build` — clean, all routes compiled
+- Full runtime boot (`hermes verify --json`) — PASS: `ok: true`, Next.js recipe; bootstrap (npm install) exit 0, build exit 0, typecheck exit 0, test exit 0 (42/42), readiness `http://127.0.0.1:3000/` -> 200.
+  - Fix required for the harness: `npm test` was `vitest` (watch mode), which never exits, so the verify harness timed out at 600s despite all tests passing. Changed to `"test": "vitest run"` so `npm test` is CI-terminating.
+- Note (pre-existing, out of docs scope): `npm audit` reports 13 vulnerabilities (3 moderate, 7 high, 3 critical) in the dependency tree. These are tracked by the SEO/security repair lane and the integration acceptance check, not by this docs-accuracy task.
 
 ## 5. Commit
 
-Single atomic commit on `wt/launch-docs-accuracy`, not pushed.
+Two atomic commits on `wt/launch-docs-accuracy`, not pushed:
+1. `6839086` docs(accuracy): doc/claim repairs + tests + report
+2. `(follow-up)` fix(ci): `npm test` exits after run so `hermes verify` passes
