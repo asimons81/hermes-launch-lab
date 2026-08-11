@@ -35,8 +35,11 @@ export async function POST(req: Request) {
   }
 
   // No double-booking the same slot. Pending bookings hold the slot only for
-  // a limited window (30 min) — an abandoned checkout must not lock it forever.
-  const HOLD_MS = 30 * 60 * 1000
+  // a limited window — an abandoned checkout must not lock it forever.
+  // Hold (35 min) is deliberately longer than the Stripe session lifetime
+  // (30 min + 60s buffer): the checkout.session.expired webhook normally
+  // releases the slot at expiry; this hold is the backstop if it never lands.
+  const HOLD_MS = 35 * 60 * 1000
   const staleCutoff = new Date(Date.now() - HOLD_MS)
 
   // Release holds that outlived their checkout window.
@@ -79,7 +82,7 @@ export async function POST(req: Request) {
       },
       quantity: 1
     }],
-    expires_at: Math.floor(Date.now() / 1000) + 30 * 60, // align with the 30-min hold
+    expires_at: Math.floor(Date.now() / 1000) + 30 * 60 + 60, // 30-min min + skew buffer; slot hold (35 min) outlives it
     success_url: `${process.env.NEXTAUTH_URL}/book/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.NEXTAUTH_URL}/book/cancel`,
     metadata: { bookingId: booking.id }

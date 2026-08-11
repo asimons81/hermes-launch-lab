@@ -26,9 +26,10 @@ export async function GET(req: Request) {
 
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return Response.json({ error: 'Bad date' }, { status: 400 })
 
-  // A pending booking holds the slot only for a limited checkout window (30 min).
-  // Stale pending holds (abandoned checkouts) must not hide the slot forever.
-  const HOLD_MS = 30 * 60 * 1000
+  // A pending booking holds the slot only for a limited checkout window (35 min,
+  // outliving the 30-min Stripe session). Stale pending holds (abandoned
+  // checkouts) must not hide the slot forever.
+  const HOLD_MS = 35 * 60 * 1000
   const staleCutoff = new Date(Date.now() - HOLD_MS)
 
   const taken = (await prisma.booking.findMany({
