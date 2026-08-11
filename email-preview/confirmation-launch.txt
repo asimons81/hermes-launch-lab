@@ -1,0 +1,41 @@
+HERMES LAUNCH LAB
+TONY SIMONS // LAUNCH LAB
+==========================================
+
+You're booked, Jordan.
+
+Your Hermes Launch Session is confirmed for Tuesday, August 18 at 2:00 PM (Central Time).
+
+We've got your setup details on file - no need to resend them.
+
+BOOKING DETAILS
+------------------------------------------
+SESSION     Hermes Launch Session
+DATE        Tue, Aug 18, 2026
+TIME        2:00-3:30 PM Central Time
+DURATION    90 minutes
+PAID        $299.00 (paid via Stripe) - PAID IN FULL
+REFERENCE   HLL-8F3K2A
+
+WHAT HAPPENS NEXT
+------------------------------------------
+1. Calendar invite. A calendar invite (hermes-launch-session-2026-08-18.ics) is
+   attached to this email - add it so the time is locked in.
+2. Nothing to prepare. Bring your questions and your setup; we handle the rest.
+3. 7-day follow-up. After the session you get 7 days of support on anything we built.
+
+ACTIONS
+------------------------------------------
+View receipt:    https://pay.stripe.com/receipts/payment/EXAMPLE
+Manage booking:  https://launch.tonysimons.dev/portal
+
+Questions? Just reply to this email - it lands in Tony's inbox.
+
+------------------------------------------
+Hermes Launch Lab - launch.tonysimons.dev
+Terms:    https://launch.tonysimons.dev/legal/terms
+Privacy:  https://launch.tonysimons.dev/legal/privacy
+
+You're receiving this because you booked a session with Hermes Launch Lab.
+Reference HLL-8F3K2A. Paid $299.00.
+(c) 2026 Hermes Launch Lab
