@@ -58,13 +58,14 @@ export default function StatusPage() {
   return (
     <>
       <SiteHeader />
-      <main className="shell page-shell page-shell--narrow" style={{ paddingTop: 40, paddingBottom: 64 }}>
+      <main id="main-content" tabIndex={-1} className="shell page-shell page-shell--narrow" style={{ paddingTop: 40, paddingBottom: 64 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
           <div>
             <p className="eyebrow">SYSTEM TELEMETRY</p>
             <h1 className="page-title" style={{ margin: 0 }}>All systems operational.</h1>
           </div>
           <button
+            type="button"
             onClick={checkHealth}
             style={{
               fontFamily: 'var(--mono)',
@@ -86,7 +87,7 @@ export default function StatusPage() {
             <span className="pane__title">LIVE METRICS TELEMETRY</span>
             <span className="pane__status pane__status--live">● REALTIME</span>
           </div>
-          <div className="pane__body" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, textAlign: 'center' }}>
+          <div className="pane__body status-metrics" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, textAlign: 'center' }}>
             <div style={{ padding: 12, background: 'rgba(10,11,9,0.8)', border: '1px solid rgba(242,240,233,0.1)' }}>
               <div style={{ fontSize: 11, fontFamily: 'var(--mono)', color: 'var(--muted)' }}>LATENCY</div>
               <div style={{ fontSize: 24, fontFamily: 'var(--mono)', color: 'var(--term-green)', marginTop: 4 }}>

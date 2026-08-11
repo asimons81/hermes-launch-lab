@@ -30,7 +30,7 @@ export function RoiCalculator() {
         <span className="pane__status pane__status--live">● INTERACTIVE</span>
       </div>
       <div className="pane__body" style={{ padding: 24 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, alignItems: 'center' }}>
+        <div className="roi-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, alignItems: 'center' }}>
           <div>
             <div style={{ marginBottom: 20 }}>
               <label style={{ fontSize: 13, fontFamily: 'var(--mono)', color: 'var(--fg)', display: 'block', marginBottom: 8 }}>
@@ -42,6 +42,7 @@ export function RoiCalculator() {
                 max={30}
                 value={weeklyHours}
                 onChange={e => setWeeklyHours(Number(e.target.value))}
+                aria-label="Repetitive hours spent per week"
                 style={{ width: '100%', accentColor: 'var(--gold)' }}
               />
               <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 4 }}>
@@ -60,6 +61,7 @@ export function RoiCalculator() {
                 step={10}
                 value={hourlyRate}
                 onChange={e => setHourlyRate(Number(e.target.value))}
+                aria-label="Hourly rate or engineering value"
                 style={{ width: '100%', accentColor: 'var(--gold)' }}
               />
             </div>

@@ -27,10 +27,11 @@ export function DocsLayout({ title, subtitle, children }: DocsLayoutProps) {
   return (
     <>
       <SiteHeader />
-      <main className="shell page-shell" style={{ paddingTop: 32, paddingBottom: 64 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '240px 1fr', gap: 40, alignItems: 'start' }}>
+      <main id="main-content" tabIndex={-1} className="shell page-shell" style={{ paddingTop: 32, paddingBottom: 64 }}>
+        <div className="docs-layout" style={{ display: 'grid', gridTemplateColumns: '240px 1fr', gap: 40, alignItems: 'start' }}>
           {/* Docs Navigation Sidebar */}
           <aside
+            className="docs-layout__aside"
             style={{
               position: 'sticky',
               top: 80,
@@ -106,6 +107,7 @@ export function CodeBlock({ code, title = 'Terminal' }: { code: string; title?: 
       <div className="pane__titlebar" style={{ display: 'flex', justifyContent: 'space-between' }}>
         <span className="pane__title">{title}</span>
         <button
+          type="button"
           onClick={handleCopy}
           style={{
             background: 'none',

@@ -31,6 +31,7 @@ export function CommandPalette() {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const router = useRouter()
   const inputRef = useRef<HTMLInputElement>(null)
+  const triggerRef = useRef<HTMLElement | null>(null)
 
   // Filter commands
   const filtered = COMMANDS.filter(cmd =>
@@ -51,6 +52,7 @@ export function CommandPalette() {
           setIsOpen(true)
         }
       } else if (e.key === 'Escape' && isOpen) {
+        e.preventDefault()
         setIsOpen(false)
       }
     }
@@ -61,10 +63,17 @@ export function CommandPalette() {
 
   useEffect(() => {
     if (isOpen) {
-      setTimeout(() => inputRef.current?.focus(), 50)
+      triggerRef.current = document.activeElement as HTMLElement | null
       setSelectedIndex(0)
+      const t = setTimeout(() => inputRef.current?.focus(), 50)
+      return () => clearTimeout(t)
     } else {
       setQuery('')
+      // Restore focus to the trigger that opened the palette
+      if (triggerRef.current && typeof triggerRef.current.focus === 'function') {
+        triggerRef.current.focus()
+      }
+      triggerRef.current = null
     }
   }, [isOpen])
 
@@ -90,6 +99,9 @@ export function CommandPalette() {
 
   return (
     <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Command palette"
       style={{
         position: 'fixed',
         inset: 0,
@@ -128,6 +140,7 @@ export function CommandPalette() {
               ref={inputRef}
               type="text"
               placeholder="Type a command or jump to page..."
+              aria-label="Search commands"
               value={query}
               onChange={e => setQuery(e.target.value)}
               onKeyDown={handleKeyDownInInput}
@@ -152,19 +165,26 @@ export function CommandPalette() {
               filtered.map((cmd, i) => {
                 const isSelected = i === selectedIndex
                 return (
-                  <div
+                  <button
                     key={cmd.id}
+                    type="button"
                     onClick={() => handleSelect(cmd.url)}
                     onMouseEnter={() => setSelectedIndex(i)}
                     style={{
+                      width: '100%',
                       padding: '8px 12px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
                       background: isSelected ? 'rgba(213,174,100,0.15)' : 'transparent',
                       borderLeft: isSelected ? '2px solid var(--gold)' : '2px solid transparent',
+                      borderTop: 'none',
+                      borderRight: 'none',
+                      borderBottom: 'none',
                       cursor: 'pointer',
                       borderRadius: 2,
+                      textAlign: 'left',
+                      color: 'inherit',
                     }}
                   >
                     <div>
@@ -180,7 +200,7 @@ export function CommandPalette() {
                         {cmd.shortcut}
                       </span>
                     )}
-                  </div>
+                  </button>
                 )
               })
             )}

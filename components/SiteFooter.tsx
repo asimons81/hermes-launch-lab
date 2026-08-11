@@ -4,7 +4,7 @@ import { BrandMark } from './BrandMark'
 export function SiteFooter() {
   return (
     <footer className="site-footer">
-      <div className="shell site-footer__grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 40 }}>
+      <div className="shell site-footer__grid">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <BrandMark />
           <p style={{ color: 'var(--muted)', fontSize: 14, lineHeight: 1.5, margin: 0, maxWidth: 320 }}>

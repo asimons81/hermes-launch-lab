@@ -144,11 +144,12 @@ export function LiveTerminal() {
         </div>
         <div style={{ display: 'flex', gap: 6, fontSize: 11, fontFamily: 'var(--mono)' }}>
           <button
+            type="button"
             onClick={() => setMode('auto')}
             style={{
               background: mode === 'auto' ? 'var(--gold-dim)' : 'transparent',
               border: '1px solid var(--line)',
-              color: mode === 'auto' ? 'var(--gold)' : 'var(--muted)',
+              color: mode === 'auto' ? 'var(--gold-bright)' : 'var(--muted)',
               padding: '2px 8px',
               cursor: 'pointer',
               borderRadius: 2,
@@ -157,6 +158,7 @@ export function LiveTerminal() {
             AUTO
           </button>
           <button
+            type="button"
             onClick={() => {
               if (mode === 'auto') {
                 setMode('interactive')
@@ -166,7 +168,7 @@ export function LiveTerminal() {
             style={{
               background: mode === 'interactive' ? 'var(--gold-dim)' : 'transparent',
               border: '1px solid var(--line)',
-              color: mode === 'interactive' ? 'var(--gold)' : 'var(--muted)',
+              color: mode === 'interactive' ? 'var(--gold-bright)' : 'var(--muted)',
               padding: '2px 8px',
               cursor: 'pointer',
               borderRadius: 2,
@@ -232,6 +234,7 @@ export function LiveTerminal() {
         </span>
         {Object.keys(interactiveCommands).map(cmd => (
           <button
+            type="button"
             key={cmd}
             onClick={() => runCommand(cmd)}
             style={{
@@ -253,6 +256,7 @@ export function LiveTerminal() {
         ))}
         {mode === 'interactive' && (
           <button
+            type="button"
             onClick={resetTerminal}
             style={{
               fontFamily: 'var(--mono)',

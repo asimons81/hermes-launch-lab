@@ -5,7 +5,13 @@ const config: Config = {
     './app/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}'
   ],
-  theme: { extend: {} },
+  theme: {
+    extend: {
+      screens: {
+        md: '900px',
+      },
+    },
+  },
   plugins: []
 }
 export default config

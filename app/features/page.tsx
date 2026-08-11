@@ -23,7 +23,7 @@ export default function Features() {
   return (
     <>
       <SiteHeader />
-      <main className="shell page-shell" style={{ paddingTop: 40, paddingBottom: 64 }}>
+      <main id="main-content" tabIndex={-1} className="shell page-shell" style={{ paddingTop: 40, paddingBottom: 64 }}>
         <p className="eyebrow">WHAT IT IS</p>
         <h1 className="page-title">What is Hermes Agent?</h1>
         <p className="page-intro">
@@ -38,7 +38,7 @@ export default function Features() {
                 <span className="pane__title">01 // FLEET COMMANDER</span>
               </div>
               <div className="pane__body">
-                <h3 style={{ letterSpacing: '-0.04em', margin: '0 0 8px 0' }}>Orchestrated Execution</h3>
+                <h2 style={{ letterSpacing: '-0.04em', margin: '0 0 8px 0', fontSize: 20 }}>Orchestrated Execution</h2>
                 <p style={{ color: 'var(--muted)', fontSize: 14, margin: 0, lineHeight: 1.5 }}>
                   One agent coordinates work across your local tools and external APIs. Tasks get routed, executed, and logged with receipts.
                 </p>
@@ -50,7 +50,7 @@ export default function Features() {
                 <span className="pane__title">02 // PERSISTENT SKILLS</span>
               </div>
               <div className="pane__body">
-                <h3 style={{ letterSpacing: '-0.04em', margin: '0 0 8px 0' }}>Compounding Intelligence</h3>
+                <h2 style={{ letterSpacing: '-0.04em', margin: '0 0 8px 0', fontSize: 20 }}>Compounding Intelligence</h2>
                 <p style={{ color: 'var(--muted)', fontSize: 14, margin: 0, lineHeight: 1.5 }}>
                   Workflows survive sessions and compound over time. No re-engineering the same prompt every single morning.
                 </p>
@@ -62,7 +62,7 @@ export default function Features() {
                 <span className="pane__title">03 // LOCAL-FIRST ENGINE</span>
               </div>
               <div className="pane__body">
-                <h3 style={{ letterSpacing: '-0.04em', margin: '0 0 8px 0' }}>Zero Cloud Lock-In</h3>
+                <h2 style={{ letterSpacing: '-0.04em', margin: '0 0 8px 0', fontSize: 20 }}>Zero Cloud Lock-In</h2>
                 <p style={{ color: 'var(--muted)', fontSize: 14, margin: 0, lineHeight: 1.5 }}>
                   Runs on your hardware. No cloud vendor lock-in. You decide what stays local and what leaves your machine.
                 </p>
