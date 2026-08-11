@@ -34,9 +34,26 @@ export async function POST(req: Request) {
     return new Response('You must accept the Terms of Service to book', { status: 400 })
   }
 
-  // No double-booking the same slot.
+  // No double-booking the same slot. Pending bookings hold the slot only for
+  // a limited window (30 min) — an abandoned checkout must not lock it forever.
+  const HOLD_MS = 30 * 60 * 1000
+  const staleCutoff = new Date(Date.now() - HOLD_MS)
+
+  // Release holds that outlived their checkout window.
+  await prisma.booking.updateMany({
+    where: { serviceId, startTime, status: 'pending', createdAt: { lt: staleCutoff } },
+    data: { status: 'cancelled' }
+  })
+
   const conflict = await prisma.booking.findFirst({
-    where: { serviceId, startTime, status: { not: 'cancelled' } }
+    where: {
+      serviceId,
+      startTime,
+      OR: [
+        { status: { in: ['confirmed', 'completed'] } },
+        { status: 'pending', createdAt: { gte: staleCutoff } }
+      ]
+    }
   })
   if (conflict) return new Response('That slot was just taken — pick another time', { status: 409 })
 
@@ -62,6 +79,7 @@ export async function POST(req: Request) {
       },
       quantity: 1
     }],
+    expires_at: Math.floor(Date.now() / 1000) + 30 * 60, // align with the 30-min hold
     success_url: `${process.env.NEXTAUTH_URL}/book/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.NEXTAUTH_URL}/book/cancel`,
     metadata: { bookingId: booking.id }

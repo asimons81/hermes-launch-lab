@@ -14,24 +14,40 @@ export async function POST(req: Request) {
     return new Response('Webhook signature failed', { status: 400 })
   }
 
+  const session = event.data.object as Stripe.Checkout.Session
+  const bookingId = session.metadata?.bookingId
+  if (!bookingId) return new Response('ok')
+
+  const booking = await prisma.booking.findUnique({ where: { id: bookingId } })
+  if (!booking) return new Response('ok')
+
   if (event.type === 'checkout.session.completed') {
-    const session = event.data.object as Stripe.Checkout.Session
-    const bookingId = session.metadata?.bookingId
-    if (bookingId) {
-      await prisma.payment.create({
-        data: {
-          userId: session.customer_details?.email || '',
-          bookingId,
-          stripeId: session.id,
-          amount: session.amount_total || 0,
-          status: 'succeeded'
-        }
-      })
-      await prisma.booking.update({
-        where: { id: bookingId },
-        data: { status: 'confirmed' }
-      })
-    }
+    // Payment.userId is an FK to User.id (cuid) — resolve the real booking owner,
+    // never the customer email string. Upsert so Stripe webhook retries are idempotent.
+    await prisma.payment.upsert({
+      where: { stripeId: session.id },
+      create: {
+        userId: booking.userId,
+        bookingId: booking.id,
+        stripeId: session.id,
+        amount: session.amount_total || 0,
+        status: 'succeeded'
+      },
+      update: { status: 'succeeded', amount: session.amount_total || 0 }
+    })
+    await prisma.booking.update({
+      where: { id: booking.id },
+      data: { status: 'confirmed' }
+    })
+  }
+
+  if (event.type === 'checkout.session.expired') {
+    // Abandoned checkout: release the slot. Only pending bookings are released —
+    // a confirmed booking must never be cancelled by a stale expiry event.
+    await prisma.booking.updateMany({
+      where: { id: booking.id, status: 'pending' },
+      data: { status: 'cancelled' }
+    })
   }
 
   return new Response('ok')

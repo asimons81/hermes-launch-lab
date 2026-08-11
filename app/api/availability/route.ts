@@ -26,10 +26,18 @@ export async function GET(req: Request) {
 
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return Response.json({ error: 'Bad date' }, { status: 400 })
 
+  // A pending booking holds the slot only for a limited checkout window (30 min).
+  // Stale pending holds (abandoned checkouts) must not hide the slot forever.
+  const HOLD_MS = 30 * 60 * 1000
+  const staleCutoff = new Date(Date.now() - HOLD_MS)
+
   const taken = (await prisma.booking.findMany({
     where: {
       startTime: { gte: new Date(date + 'T00:00:00Z'), lt: new Date(date + 'T23:59:59Z') },
-      status: { not: 'cancelled' }
+      OR: [
+        { status: { in: ['confirmed', 'completed'] } },
+        { status: 'pending', createdAt: { gte: staleCutoff } }
+      ]
     },
     select: { startTime: true }
   })).map(b => b.startTime)
