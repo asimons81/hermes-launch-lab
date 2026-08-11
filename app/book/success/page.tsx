@@ -1,3 +1,10 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Payment Received',
+  robots: { index: false, follow: false },
+}
+
 export default function BookSuccess() {
   return (
     <div className="container" style={{textAlign:'center',marginTop:'var(--space-8)'}}>

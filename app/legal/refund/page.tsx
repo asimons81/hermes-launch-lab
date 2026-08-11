@@ -1,3 +1,11 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Refund & Cancellation Policy',
+  description: 'Clear rules for rescheduling, credits, and session changes.',
+  alternates: { canonical: '/legal/refund' },
+}
+
 export default function Refund() {
   return (
     <article>

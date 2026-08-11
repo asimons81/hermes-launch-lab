@@ -1,7 +1,15 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
 import { SkillCatalog } from '@/components/SkillCatalog'
+
+export const metadata: Metadata = {
+  title: 'What is Hermes Agent',
+  description:
+    'Hermes is an autonomous AI agent that runs on your hardware — Windows, macOS, or Linux. See how hands-on setup, brokered vault security, and tested workflows work.',
+  alternates: { canonical: '/features' },
+}
 
 const comparison = [
   { feature: 'Hands-on setup pairing', hermes: true, claude: false, cursor: false, diy: false },

@@ -1,4 +1,10 @@
+import type { Metadata } from 'next'
 import { BrandMark } from '@/components/BrandMark'
+
+export const metadata: Metadata = {
+  title: 'Check Your Inbox',
+  robots: { index: false, follow: false },
+}
 
 export default function VerifyRequest() {
   return (

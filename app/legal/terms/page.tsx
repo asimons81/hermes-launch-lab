@@ -1,3 +1,12 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Terms of Service',
+  description:
+    'The rules governing independent Hermes consulting sessions. Last updated August 10, 2026.',
+  alternates: { canonical: '/legal/terms' },
+}
+
 export default function Terms() {
   return (
     <article>

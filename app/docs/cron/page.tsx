@@ -1,4 +1,12 @@
+import type { Metadata } from 'next'
 import { DocsLayout, CodeBlock, Callout } from '@/components/DocsLayout'
+
+export const metadata: Metadata = {
+  title: 'Autonomous Cron & Background Loops',
+  description:
+    'Schedule background workflows, recurring radar monitoring, and automated event notifications.',
+  alternates: { canonical: '/docs/cron' },
+}
 
 export default function CronDoc() {
   return (

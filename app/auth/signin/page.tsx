@@ -1,5 +1,11 @@
+import type { Metadata } from 'next'
 import { auth, signIn } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 import { BrandMark } from '@/components/BrandMark'
+
+export const metadata: Metadata = {
+  title: 'Sign In',
+  robots: { index: false, follow: false },
+}
 
 export default async function SignIn() { const session = await auth(); if (session) redirect('/portal'); return <main className="shell page-shell page-shell--narrow"><BrandMark /><section className="card" style={{marginTop:48}}><p className="eyebrow">CLIENT PORTAL</p><h1 className="page-title" style={{fontSize:'clamp(42px,6vw,60px)'}}>Sign in securely.</h1><p className="page-intro">We’ll send a magic link. No password to create or remember.</p><form action={async (formData: FormData) => { 'use server'; await signIn('resend', { email: formData.get('email') as string, redirectTo: '/portal' }) }} style={{marginTop:28}}><label htmlFor="email">Email address</label><input id="email" type="email" name="email" placeholder="you@domain.com" required /><button type="submit" className="button button--primary" style={{width:'100%',marginTop:14}}>Send secure link <span>↗</span></button></form><p className="hero__note">Independent service. Not affiliated with Nous Research or Hermes Agent maintainers.</p></section></main> }

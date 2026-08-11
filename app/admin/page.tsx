@@ -1,8 +1,14 @@
+import type { Metadata } from 'next'
 import { auth } from "@/lib/auth"
 import { redirect } from "next/navigation"
 import { prisma } from "@/lib/db"
 import { SiteHeader } from "@/components/SiteHeader"
 import { SiteFooter } from "@/components/SiteFooter"
+
+export const metadata: Metadata = {
+  title: 'Booking Dashboard',
+  robots: { index: false, follow: false },
+}
 
 export default async function Admin() {
   const session = await auth()

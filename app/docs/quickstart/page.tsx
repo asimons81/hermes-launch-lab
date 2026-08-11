@@ -1,4 +1,12 @@
+import type { Metadata } from 'next'
 import { DocsLayout, CodeBlock, Callout } from '@/components/DocsLayout'
+
+export const metadata: Metadata = {
+  title: 'Quickstart Guide',
+  description:
+    'Install Hermes Agent, verify local dependencies, and test your first workflow in under 5 minutes.',
+  alternates: { canonical: '/docs/quickstart' },
+}
 
 export default function QuickstartDoc() {
   return (
