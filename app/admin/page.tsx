@@ -18,14 +18,14 @@ export default async function Admin() {
   return (
     <>
       <SiteHeader />
-      <main className="shell page-shell">
+      <main id="main-content" tabIndex={-1} className="shell page-shell">
         <p className="eyebrow">ADMINISTRATION</p>
         <h1 className="page-title">Booking Dashboard</h1>
         <p className="page-intro">Real-time session reservations and client intake records.</p>
 
         <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
           <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--line)', background: 'var(--surface-2)' }}>
-            <h3 style={{ margin: 0, fontSize: 18 }}>Recent Sessions ({bookings.length})</h3>
+            <h2 style={{ margin: 0, fontSize: 18 }}>Recent Sessions ({bookings.length})</h2>
           </div>
           <table className="table">
             <thead>

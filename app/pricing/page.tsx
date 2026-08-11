@@ -13,7 +13,7 @@ export default function Pricing() {
   return (
     <>
       <SiteHeader />
-      <main className="shell page-shell" style={{ paddingTop: 40, paddingBottom: 64 }}>
+      <main id="main-content" tabIndex={-1} className="shell page-shell" style={{ paddingTop: 40, paddingBottom: 64 }}>
         <p className="eyebrow">PRICING & SERVICES</p>
         <h1 className="page-title">One-time sessions. No retainers.</h1>
         <p className="page-intro">

@@ -108,7 +108,7 @@ export function DiagnosticIntake() {
             </div>
             <div className="diagnostic__actions">
               <Link href={`/book?service=${rec.slug}`} className="button button--primary">Book this session <span>↗</span></Link>
-              <button className="text-link" onClick={() => { setStepIndex(0); setAnswers({}); setShowResult(false) }}>Start over</button>
+              <button type="button" className="text-link" onClick={() => { setStepIndex(0); setAnswers({}); setShowResult(false) }}>Start over</button>
             </div>
           </div>
         </div>
@@ -134,6 +134,7 @@ export function DiagnosticIntake() {
       <div className="diagnostic__options">
         {step.options.map(opt => (
           <button
+            type="button"
             key={opt}
             className="diagnostic__option"
             onClick={() => {
@@ -153,9 +154,9 @@ export function DiagnosticIntake() {
       </div>
       <div className="diagnostic__footer">
         {stepIndex > 0 && (
-          <button className="text-link" onClick={() => setStepIndex(stepIndex - 1)}>← Back</button>
+          <button type="button" className="text-link" onClick={() => setStepIndex(stepIndex - 1)}>← Back</button>
         )}
-        <button className="text-link diagnostic__skip" onClick={() => setShowFlatPricing(true)}>
+        <button type="button" className="text-link diagnostic__skip" onClick={() => setShowFlatPricing(true)}>
           Just show me pricing →
         </button>
       </div>

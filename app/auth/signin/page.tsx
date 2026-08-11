@@ -37,7 +37,7 @@ export default async function SignIn({
   }
 
   return (
-    <main className="shell page-shell page-shell--narrow">
+    <main id="main-content" tabIndex={-1} className="shell page-shell page-shell--narrow">
       <BrandMark />
       <section className="card" style={{ marginTop: 48 }}>
         <p className="eyebrow">CLIENT PORTAL</p>

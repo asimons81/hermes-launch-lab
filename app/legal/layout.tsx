@@ -5,7 +5,7 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
   return (
     <>
       <SiteHeader />
-      <main className="shell page-shell page-shell--narrow">
+      <main id="main-content" tabIndex={-1} className="shell page-shell page-shell--narrow">
         <p className="eyebrow">LEGAL &amp; PRIVACY</p>
         {children}
         <p className="notice" style={{ marginTop: 40 }}>

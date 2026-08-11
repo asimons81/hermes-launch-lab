@@ -11,7 +11,7 @@ export default async function Intake() {
   return (
     <>
       <SiteHeader />
-      <main className="shell page-shell page-shell--narrow">
+      <main id="main-content" tabIndex={-1} className="shell page-shell page-shell--narrow">
         <p className="eyebrow">STEP 02 / PRE-SESSION</p>
         <h1 className="page-title">Pre-Session Intake</h1>
         <p className="page-intro">Prepare your environment context so we hit the ground running.</p>

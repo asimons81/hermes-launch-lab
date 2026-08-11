@@ -56,6 +56,7 @@ export function TopoGraph() {
           return (
             <button
               key={node.id}
+              type="button"
               className={`topo__node ${isActive ? 'topo__node--active' : ''}`}
               style={{ left, top }}
               onClick={() => setActiveNode(node.id)}
@@ -70,7 +71,7 @@ export function TopoGraph() {
         {nodes.filter(n => n.id === activeNode).map(n => (
           <div key={n.id} className="topo__detail-content">
             <p className="eyebrow">NODE</p>
-            <h4>{n.label}</h4>
+            <h3 className="topo__detail-title">{n.label}</h3>
             <p>{n.desc}</p>
           </div>
         ))}

@@ -1,17 +1,39 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { BrandMark } from './BrandMark'
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const toggleRef = useRef<HTMLButtonElement>(null)
 
   const handleNavClick = () => setMenuOpen(false)
+
+  const openCommandPalette = () => {
+    const event = new KeyboardEvent('keydown', { key: 'k', ctrlKey: true, bubbles: true })
+    window.dispatchEvent(event)
+  }
+
+  // Escape closes the mobile menu and returns focus to the toggle
+  useEffect(() => {
+    if (!menuOpen) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMenuOpen(false)
+        toggleRef.current?.focus()
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [menuOpen])
 
   return (
     <header className="site-header">
       <div className="shell site-header__inner">
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
         <BrandMark />
 
         {/* Desktop navigation */}
@@ -32,10 +54,9 @@ export function SiteHeader() {
         {/* Desktop actions */}
         <div className="hidden md:flex" style={{ alignItems: 'center', gap: 12, marginLeft: 16, flexShrink: 0 }}>
           <button
-            onClick={() => {
-              const event = new KeyboardEvent('keydown', { key: 'k', ctrlKey: true, bubbles: true })
-              window.dispatchEvent(event)
-            }}
+            type="button"
+            onClick={openCommandPalette}
+            aria-label="Search"
             style={{
               background: 'rgba(255,255,255,0.03)',
               border: '1px solid rgba(255,255,255,0.08)',
@@ -62,9 +83,13 @@ export function SiteHeader() {
 
         {/* Mobile hamburger toggle */}
         <button
+          ref={toggleRef}
+          type="button"
           className="md:hidden"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
           style={{
             background: "none",
             border: "none",
@@ -95,6 +120,9 @@ export function SiteHeader() {
       {/* Mobile dropdown drawer */}
       {menuOpen && (
         <div
+          id="mobile-menu"
+          role="navigation"
+          aria-label="Mobile navigation"
           className="md:hidden"
           style={{
             position: "absolute",
@@ -124,6 +152,28 @@ export function SiteHeader() {
           <Link href="/docs" onClick={handleNavClick} style={{ fontFamily: "var(--mono)", fontSize: 12, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--bone)", textDecoration: "none" }}>Docs</Link>
           <Link href="/status" onClick={handleNavClick} style={{ fontFamily: "var(--mono)", fontSize: 12, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--bone)", textDecoration: "none" }}>Status</Link>
           <Link href="/portal" onClick={handleNavClick} style={{ fontFamily: "var(--mono)", fontSize: 12, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--bone)", textDecoration: "none" }}>Client portal</Link>
+          <button
+            type="button"
+            onClick={() => {
+              handleNavClick()
+              openCommandPalette()
+            }}
+            style={{
+              alignSelf: "flex-start",
+              background: "rgba(255,255,255,0.03)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              color: "var(--bone)",
+              fontFamily: "var(--mono)",
+              fontSize: 12,
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              padding: "8px 14px",
+              borderRadius: 4,
+              cursor: "pointer",
+            }}
+          >
+            Search commands
+          </button>
           <Link
             href="/book"
             onClick={handleNavClick}

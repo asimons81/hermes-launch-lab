@@ -201,6 +201,7 @@ export function SkillCatalog() {
         <div className="skill-catalog__categories" style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
           {categories.map(cat => (
             <button
+              type="button"
               key={cat}
               onClick={() => setSelectedCategory(cat)}
               style={{
@@ -287,6 +288,7 @@ export function SkillCatalog() {
 
               <div style={{ marginTop: 'auto', display: 'flex', gap: 8 }}>
                 <button
+                  type="button"
                   onClick={() => setActiveInspect(skill)}
                   style={{
                     flexGrow: 1,
@@ -303,6 +305,7 @@ export function SkillCatalog() {
                   Inspect Example Manifest ↗
                 </button>
                 <button
+                  type="button"
                   onClick={() => copyToClipboard(skill.cmd)}
                   title="Copy command"
                   style={{
@@ -348,6 +351,7 @@ export function SkillCatalog() {
             <div className="pane__titlebar" style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span className="pane__title">EXAMPLE MANIFEST: {activeInspect.name}.md (illustrative)</span>
               <button
+                type="button"
                 onClick={() => setActiveInspect(null)}
                 style={{ background: 'none', border: 'none', color: 'var(--muted)', cursor: 'pointer' }}
               >
@@ -377,6 +381,7 @@ export function SkillCatalog() {
                   $ {activeInspect.cmd}
                 </code>
                 <button
+                  type="button"
                   onClick={() => copyToClipboard(activeInspect.cmd)}
                   className="button button--primary"
                   style={{ fontSize: 12, padding: '6px 14px' }}

@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* === COCKPIT HERO === */}
         <section className="cockpit shell">
           <div className="cockpit__copy">
