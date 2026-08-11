@@ -4,7 +4,7 @@ import { DocsLayout, CodeBlock, Callout } from '@/components/DocsLayout'
 export const metadata: Metadata = {
   title: 'Vault & Credential Security',
   description:
-    'How lease-based credential brokering keeps your API keys isolated and out of raw terminal output.',
+    'Where Hermes keeps API keys, how to pull them from an external secret manager, and how the optional egress proxy keeps them out of sandboxes.',
   alternates: { canonical: '/docs/vault' },
 }
 

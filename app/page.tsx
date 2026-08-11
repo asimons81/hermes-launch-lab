@@ -11,7 +11,7 @@ import { StatusBar } from '@/components/StatusBar'
 export const metadata: Metadata = {
   title: { absolute: 'Hermes Launch Lab — Tony Simons Independent Studio' },
   description:
-    'Hands-on 1-on-1 Hermes Agent consulting, zero-trust vault architecture, and custom agent infrastructure builds. Book a session and leave with it working.',
+    'Hands-on 1-on-1 Hermes Agent consulting, credential security setups, and custom agent infrastructure builds. Book a session and leave with it working.',
   alternates: { canonical: '/' },
 }
 

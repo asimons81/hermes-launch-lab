@@ -7,7 +7,7 @@ import { RoiCalculator } from '@/components/RoiCalculator'
 export const metadata: Metadata = {
   title: 'Pricing & Services',
   description:
-    'One-time Hermes Agent consulting sessions: Strategy ($99), Launch ($299), and Custom Build ($600). No retainers, no upsell maze — you leave with working software.',
+    'One-time Hermes Agent consulting sessions: Strategy ($99), Launch ($299), and Custom Build ($600). No retainers, no upsell maze — Launch and Custom sessions leave you with working software; Strategy ends with a written action plan.',
   alternates: { canonical: '/pricing' },
 }
 
