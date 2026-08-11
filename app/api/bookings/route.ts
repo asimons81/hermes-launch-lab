@@ -28,6 +28,12 @@ export async function POST(req: Request) {
     return new Response('Selected time is outside available hours', { status: 400 })
   }
 
+  // Legal gate: terms acceptance is mandatory and recorded with the booking (Iowa UETA § 554D).
+  const TERMS_VERSION = '2026-08-10'
+  if (form.get('acceptedTerms') !== 'yes') {
+    return new Response('You must accept the Terms of Service to book', { status: 400 })
+  }
+
   // No double-booking the same slot.
   const conflict = await prisma.booking.findFirst({
     where: { serviceId, startTime, status: { not: 'cancelled' } }
@@ -40,7 +46,9 @@ export async function POST(req: Request) {
       serviceId,
       startTime,
       endTime,
-      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      acceptedTermsVersion: TERMS_VERSION,
+      acceptedTermsAt: new Date()
     }
   })
 

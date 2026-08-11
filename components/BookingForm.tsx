@@ -16,6 +16,7 @@ export default function BookingForm({ services, initialService }: { services: Se
   const [date, setDate] = useState('')
   const [slots, setSlots] = useState<{ iso: string; label: string }[]>([])
   const [selected, setSelected] = useState('')
+  const [accepted, setAccepted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -60,8 +61,20 @@ export default function BookingForm({ services, initialService }: { services: Se
         {error && <p className="notice" style={{ color: 'var(--red-accent, #ff2020)' }}>{error}</p>}
       </div>
       <input type="hidden" name="startTime" value={selected} />
+      <input type="hidden" name="acceptedTerms" value={accepted ? 'yes' : ''} />
       <div className="field--wide">
-        <button type="submit" className="button button--primary" disabled={!selected}>
+        <label style={{ display: 'flex', gap: 10, alignItems: 'flex-start', cursor: 'pointer' }}>
+          <input type="checkbox" name="accept" checked={accepted} onChange={e => setAccepted(e.target.checked)} style={{ marginTop: 4 }} />
+          <span style={{ color: 'var(--muted)', fontSize: 14, lineHeight: 1.6 }}>
+            I agree to the <a href="/legal/terms" target="_blank" style={{ textDecoration: 'underline' }}>Terms of Service</a>, the{' '}
+            <a href="/legal/agreement" target="_blank" style={{ textDecoration: 'underline' }}>Consulting Agreement</a>, and the{' '}
+            <a href="/legal/privacy" target="_blank" style={{ textDecoration: 'underline' }}>Privacy Policy</a>. This acceptance is an
+            electronic signature and is recorded with this booking.
+          </span>
+        </label>
+      </div>
+      <div className="field--wide">
+        <button type="submit" className="button button--primary" disabled={!selected || !accepted}>
           Continue to checkout <span>↗</span>
         </button>
       </div>
