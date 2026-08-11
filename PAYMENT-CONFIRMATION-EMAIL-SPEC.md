@@ -131,15 +131,15 @@ Personalization hooks:
 
 - Single column, `max-width: 600px`, centered.
 - Table-based layout (email-safe), no flexbox/grid in critical paths.
-- **Light-first**: white `#FFFFFF` background, near-black text. The dark app
-  aesthetic is carried by a **deep-black header band** (`#020203`) with the
-  wordmark, a crimson accent rule, and dark detail chips. Rationale: light
-  emails render reliably in every client (Gmail, Outlook, Apple Mail, dark-mode
-  inversions); a fully dark email degrades badly in Gmail's forced-light and
-  Outlook's HTML engine.
-- Dark-mode variant via `@media (prefers-color-scheme: dark)` with
-  `color-scheme: light dark` meta — invert body to `#0A0A0C` surface, keep
-  tokens (see 4.2). Must be tested in Apple Mail + Gmail app.
+- **Dark-native (APPROVED 2026-08-11):** the whole card is obsidian `#020203`,
+  matching the live site. Terminal-window titlebar (`#14171D` + traffic dots
+  `#E53E3E`/`#FF2A35`/`#34D399`), detail pane `#0E1014`, footer `#0A0A0C`,
+  warm-white ink `#F8F9FA`, crimson `#FF2A35` accents. Rationale: the brand is
+  unapologetically dark, and dark emails sidestep Gmail's light-email
+  auto-inversion. Every table cell carries explicit background + text colors
+  (Outlook desktop needs cell-level colors).
+- `color-scheme: dark` + `supported-color-schemes: dark` meta; the embedded
+  `<style>` block is used only for the ≤620px fluid override.
 
 ### 4.2 Palette (from app tokens, `app/globals.css`)
 
