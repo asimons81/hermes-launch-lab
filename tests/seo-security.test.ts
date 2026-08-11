@@ -10,6 +10,7 @@ const CANONICAL_ORIGIN = 'https://launch.tonysimons.dev'
 // Public, indexable routes — must appear in sitemap with per-route metadata + canonical.
 const PUBLIC_ROUTES = [
   { path: '/', file: 'app/page.tsx' },
+  { path: '/contact', file: 'app/contact/page.tsx' },
   { path: '/pricing', file: 'app/pricing/page.tsx' },
   { path: '/features', file: 'app/features/page.tsx' },
   { path: '/faq', file: 'app/faq/page.tsx' },

@@ -55,6 +55,7 @@ describe('Responsive & accessibility repair contract (static)', () => {
     expect(header).toMatch(/href=["']#main-content["']/)
     const mains = [
       'app/page.tsx',
+      'app/contact/page.tsx',
       'app/features/page.tsx',
       'app/pricing/page.tsx',
       'app/faq/page.tsx',
