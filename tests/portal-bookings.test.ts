@@ -34,7 +34,7 @@ describe('client portal shows real bookings (regression: static placeholder)', (
 
   it('queries bookings for the signed-in user', () => {
     expect(portal).toMatch(/prisma\.booking\.findMany/)
-    expect(portal).toMatch(/userId:\s*session\.user\.id/)
+    expect(portal).toMatch(/userId\s*[:=]\s*session\.user!?\.id/)
   })
 
   it('filters upcoming vs past sessions', () => {
