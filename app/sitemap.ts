@@ -6,6 +6,7 @@ const SITE_URL = 'https://launch.tonysimons.dev'
 // is intentionally excluded here — the sitemap must list real canonical pages.
 const routes = [
   '/',
+  '/about',
   '/contact',
   '/pricing',
   '/features',

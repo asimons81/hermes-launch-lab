@@ -32,7 +32,8 @@ export function ReceiptsRail() {
     return () => clearInterval(interval)
   }, [])
 
-  const visibleCount = 3
+  // One sample at a time keeps the illustrative rail legible at every width.
+  const visibleCount = 1
   const visibleReceipts = Array.from({ length: visibleCount }, (_, i) =>
     receipts[(activeIndex + i) % receipts.length]
   )

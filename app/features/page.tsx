@@ -5,9 +5,9 @@ import { SiteFooter } from '@/components/SiteFooter'
 import { SkillCatalog } from '@/components/SkillCatalog'
 
 export const metadata: Metadata = {
-  title: 'What is Hermes Agent',
+  title: 'What Tony Builds with Hermes',
   description:
-    'Hermes is an autonomous AI agent that runs on your hardware — Windows, macOS, or Linux. See how hands-on setup, credential security, and tested workflows work.',
+    'See the local-first agent systems, credential controls, and tested workflows that Hermes Launch Lab helps configure around real work.',
   alternates: { canonical: '/features' },
 }
 
@@ -22,10 +22,10 @@ export default function Features() {
     <>
       <SiteHeader />
       <main id="main-content" tabIndex={-1} className="shell page-shell" style={{ paddingTop: 40, paddingBottom: 64 }}>
-        <p className="eyebrow">WHAT IT IS</p>
-        <h1 className="page-title">What is Hermes Agent?</h1>
+        <p className="eyebrow">WHAT TONY BUILDS</p>
+        <h1 className="page-title">The parts that make an agent setup useful.</h1>
         <p className="page-intro">
-          Hermes is an autonomous AI agent that runs on your hardware — Windows, macOS, or Linux. It executes real work: research, coding, content production, and operations. You stay in control of the keys, the data, and the output.
+          Hermes runs on your hardware and can execute real work across research, coding, content production, and operations. The session work is about configuring the useful parts around it: clear access boundaries, durable workflows, and a result you can test.
         </p>
 
         {/* 3 Pillars */}

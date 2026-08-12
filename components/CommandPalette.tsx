@@ -13,7 +13,8 @@ interface NavCommand {
 
 const COMMANDS: NavCommand[] = [
   { id: 'home', title: 'Home / Terminal Cockpit', category: 'Navigation', url: '/' },
-  { id: 'features', title: 'Features & System Architecture', category: 'Navigation', url: '/features' },
+  { id: 'about', title: 'About Tony / Independent Builder', category: 'Navigation', url: '/about' },
+  { id: 'features', title: 'What Tony Builds with Hermes', category: 'Navigation', url: '/features' },
   { id: 'pricing', title: 'Pricing & Service Paths', category: 'Navigation', url: '/pricing' },
   { id: 'status', title: 'System Status & Telemetry', category: 'Navigation', url: '/status' },
   { id: 'docs-index', title: 'Documentation Hub', category: 'Docs', url: '/docs' },

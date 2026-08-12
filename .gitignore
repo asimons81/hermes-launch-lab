@@ -50,3 +50,7 @@ next-env.d.ts
 
 # hardproof tooling state (audit artifacts, never commit)
 .hardproof/
+
+# local creative candidate renders; approved optimized assets live in public/media/
+.artifacts/
+.worktrees/
