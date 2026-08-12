@@ -62,6 +62,7 @@ export default function BookingForm({ services, initialService }: { services: Se
       </div>
       <input type="hidden" name="startTime" value={selected} />
       <input type="hidden" name="acceptedTerms" value={accepted ? 'yes' : ''} />
+      <input type="hidden" name="timeZone" value={Intl.DateTimeFormat().resolvedOptions().timeZone} />
       <div className="field--wide">
         <label style={{ display: 'flex', gap: 10, alignItems: 'flex-start', cursor: 'pointer' }}>
           <input type="checkbox" name="accept" checked={accepted} onChange={e => setAccepted(e.target.checked)} style={{ marginTop: 4 }} />

@@ -85,7 +85,8 @@ export async function sendBookingConfirmation(booking: ConfirmationBooking, rece
   const firstName =
     user.name?.split(' ')[0] ?? booking.intake?.fullName?.split(' ')[0] ?? 'there'
   const reference = bookingReference(booking.id)
-  const amountUsd = formatUsd(service.price)
+  // service.price is stored in DOLLARS (e.g. 299); Stripe/formatUsd work in cents.
+  const amountUsd = formatUsd(service.price * 100)
 
   const data = {
     firstName,
@@ -137,7 +138,8 @@ export async function sendBookingConfirmation(booking: ConfirmationBooking, rece
 export async function sendAdminNotification(booking: ConfirmationBooking, receiptUrl: string | null) {
   const { service, user } = booking
   const reference = bookingReference(booking.id)
-  const amountUsd = formatUsd(service.price)
+  // service.price is stored in DOLLARS (e.g. 299); formatUsd works in cents.
+  const amountUsd = formatUsd(service.price * 100)
   const dateLine = formatDateLine(booking.startTime, booking.timeZone)
   const timeLine = formatTimeLine(booking.startTime, booking.endTime, booking.timeZone)
   const intake = booking.intake

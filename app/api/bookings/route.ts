@@ -13,6 +13,10 @@ export async function POST(req: Request) {
   const form = await req.formData()
   const serviceId = form.get('serviceId') as string
   const startTime = new Date(form.get('startTime') as string)
+  // Customer timezone comes from the browser (booking form sends it); the server
+  // default (UTC on Vercel) is only a fallback — never the source of truth.
+  const timeZone =
+    (form.get('timeZone') as string) || Intl.DateTimeFormat().resolvedOptions().timeZone
 
   if (Number.isNaN(startTime.getTime())) {
     return new Response('Invalid start time', { status: 400 })
@@ -73,7 +77,7 @@ export async function POST(req: Request) {
     serviceId,
     startTime,
     endTime,
-    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    timeZone,
     acceptedTermsVersion: TERMS_VERSION,
     acceptedTermsAt: new Date(),
     status: 'pending',
