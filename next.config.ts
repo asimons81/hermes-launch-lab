@@ -13,14 +13,18 @@ const nextConfig: NextConfig = {
     // inline RSC/hydration bootstrap scripts, self-hosted chunks/CSS/fonts,
     // and React inline style attributes. Dev relaxes connect-src for HMR.
     const isProd = process.env.NODE_ENV === 'production'
+    // GA4 gtag is only loaded (and only allowed by CSP) when the measurement
+    // ID is actually set on the platform. No env var -> no third-party
+    // scripts and a fully strict CSP.
+    const gaEnabled = !!process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
 
     const csp = [
       "default-src 'self'",
-      `script-src 'self' 'unsafe-inline'${isProd ? '' : " 'unsafe-eval'"}`,
+      `script-src 'self' 'unsafe-inline'${isProd ? '' : " 'unsafe-eval'"}${gaEnabled ? ' https://www.googletagmanager.com' : ''}`,
       "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: blob:",
+      `img-src 'self' data: blob:${gaEnabled ? ' https://www.google-analytics.com' : ''}`,
       "font-src 'self' data:",
-      `connect-src 'self'${isProd ? '' : ' ws:'}`,
+      `connect-src 'self'${isProd ? '' : ' ws:'}${gaEnabled ? ' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com' : ''}`,
       "frame-src 'self'",
       "frame-ancestors 'self'",
       "base-uri 'self'",

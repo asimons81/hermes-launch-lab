@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Instrument_Serif, Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { CommandPalette } from '@/components/CommandPalette'
+import { GoogleAnalytics } from '@/components/GoogleAnalytics'
 
 const instrumentSerif = Instrument_Serif({
   weight: '400',
@@ -72,6 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-[#020203] text-[#F8F9FA] antialiased">
         {children}
         <CommandPalette />
+        <GoogleAnalytics />
       </body>
     </html>
   )
