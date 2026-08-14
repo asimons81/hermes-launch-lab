@@ -1124,6 +1124,37 @@ select {
 }
 .proof-project .text-link { margin-top: auto; }
 
+/* === Why Tony Homepage Section === */
+.why-tony {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+  gap: clamp(32px, 6vw, 80px);
+  align-items: center;
+  padding-block: clamp(56px, 8vw, 96px);
+  border-top: 1px solid var(--line);
+}
+.why-tony__copy {
+  max-width: 600px;
+}
+.why-tony__copy h2 {
+  margin: 0 0 20px;
+  font-size: clamp(32px, 4vw, 54px);
+  line-height: 1.05;
+}
+.why-tony__copy p {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.65;
+  margin: 0 0 16px;
+}
+.why-tony__copy p:first-of-type {
+  color: var(--bone);
+  font-size: 18px;
+}
+.why-tony__copy .text-link {
+  margin-top: 8px;
+}
+
 /* Founder / About page: oversized editorial composition. */
 .about-hero {
   position: relative;
@@ -1335,12 +1366,14 @@ select {
 .site-header__drawer-book { justify-content: center; margin-top: 8px; min-height: 44px; }
 
 @media (max-width: 900px) {
+  .why-tony,
   .about-hero,
   .about-statement,
   .engagement-steps,
   .proof-work__heading,
   .proof-work__grid,
   .fit-check { grid-template-columns: 1fr; }
+  .why-tony { gap: 36px; padding-block: 48px; }
   .about-hero { min-height: auto; padding-top: 64px; overflow: clip; }
   .founder-portrait { justify-self: start; max-width: min(520px, 100%); }
   .founder-portrait::before { display: none; }
