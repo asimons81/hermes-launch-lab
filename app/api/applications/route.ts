@@ -1,6 +1,7 @@
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/db'
 import { containsLikelySecret } from '@/lib/submission-security'
+import { sendApplicationAdminNotification } from '@/lib/email'
 import { z } from 'zod'
 
 const schema = z.object({
@@ -26,6 +27,23 @@ export async function POST(req: Request) {
   })
   if (recent >= 3) return new Response('Too many applications. Try again later.', { status: 429 })
 
-  await prisma.application.create({ data: { userId: session.user.id, type: 'custom', payload: parsed.data } })
+  const application = await prisma.application.create({ data: { userId: session.user.id, type: 'custom', payload: parsed.data } })
+
+  try {
+    await sendApplicationAdminNotification({
+      userEmail: session.user.email ?? 'Unknown applicant',
+      businessName: parsed.data.businessName,
+      businessLocation: parsed.data.businessLocation,
+      outcome: parsed.data.outcome,
+      environment: parsed.data.environment,
+      deadline: parsed.data.deadline,
+      budgetRange: parsed.data.budgetRange,
+      applicationId: application.id,
+    })
+  } catch (err) {
+    console.error('[applications] failed to send admin notification email:', err)
+  }
+
   return Response.redirect(new URL('/contact?application=received', req.url), 303)
 }
+

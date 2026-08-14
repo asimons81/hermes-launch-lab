@@ -51,4 +51,13 @@ describe('session and intake boundaries', () => {
     expect(containsLikelySecret(['password = definitely-not-for-a-form'])).toBe(true)
     expect(containsLikelySecret(['Build a daily research workflow for our product team.'])).toBe(false)
   })
+
+  it('notifies admin on application submission', () => {
+    const route = read('app/api/applications/route.ts')
+    const emailLib = read('lib/email.ts')
+    expect(route).toMatch(/sendApplicationAdminNotification/)
+    expect(emailLib).toMatch(/sendApplicationAdminNotification/)
+    expect(emailLib).toMatch(/tony@tonyreviewsthings\.com/)
+  })
 })
+

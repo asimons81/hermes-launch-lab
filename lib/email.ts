@@ -197,3 +197,51 @@ export async function sendAdminNotification(booking: ConfirmationBooking, receip
   if (result.error) throw new Error(`resend error: ${JSON.stringify(result.error)}`)
   console.log(`[email] admin notice sent booking=${booking.id} resend=${result.data?.id}`)
 }
+
+export type ApplicationAdminData = {
+  userEmail: string
+  businessName: string
+  businessLocation: string
+  outcome: string
+  environment: string
+  deadline: string
+  budgetRange: string
+  applicationId: string
+}
+
+/** Admin notification when a Custom/International application is submitted. */
+export async function sendApplicationAdminNotification(data: ApplicationAdminData) {
+  const body = [
+    `New Custom / International Application`,
+    `------------------------------------------`,
+    `Applicant:       ${data.userEmail}`,
+    `Business:        ${data.businessName}`,
+    `Location:        ${data.businessLocation}`,
+    `Budget Range:    ${data.budgetRange}`,
+    `Target Deadline: ${data.deadline}`,
+    `Application ID:  ${data.applicationId}`,
+    ``,
+    `DESIRED OUTCOME`,
+    `------------------------------------------`,
+    data.outcome,
+    ``,
+    `CURRENT ENVIRONMENT`,
+    `------------------------------------------`,
+    data.environment,
+  ].join('\n')
+
+  const result = await withTimeout(
+    emailClient().emails.send({
+      from: FROM,
+      to: ADMIN_EMAIL,
+      replyTo: data.userEmail,
+      subject: `New Application: ${data.businessName} (${data.budgetRange})`,
+      text: body,
+    }),
+    10_000
+  )
+
+  if (result.error) throw new Error(`resend error: ${JSON.stringify(result.error)}`)
+  console.log(`[email] application notice sent app=${data.applicationId} resend=${result.data?.id}`)
+}
+
