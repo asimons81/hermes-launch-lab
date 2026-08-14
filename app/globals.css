@@ -1058,35 +1058,43 @@ select {
 }
 .proof-work__grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
 }
 .proof-project {
-  min-height: 315px;
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   background: var(--surface);
   border: 1px solid var(--line);
+  border-radius: 4px;
   transition: border-color .25s ease, transform .25s ease;
 }
-.proof-project:first-child { grid-column: 1 / -1; grid-template-columns: 1.18fr .82fr; }
 .proof-project:hover { border-color: var(--line-strong); transform: translateY(-2px); }
-.proof-project__image-wrap { position: relative; min-height: 220px; overflow: hidden; background: #08080a; }
+.proof-project__image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #08080a;
+  border-bottom: 1px solid var(--line);
+}
 .proof-project__image {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
-  filter: saturate(.8) contrast(1.08) brightness(.82);
-  transition: transform .5s cubic-bezier(.16,1,.3,1), filter .35s ease;
+  object-position: top left;
+  filter: contrast(1.02) brightness(.95);
+  transition: transform .5s cubic-bezier(.16,1,.3,1);
 }
-.proof-project:hover .proof-project__image { transform: scale(1.035); filter: saturate(1) contrast(1.04) brightness(.94); }
+.proof-project:hover .proof-project__image { transform: scale(1.025); }
 .proof-project__body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: clamp(24px, 3vw, 42px);
+  padding: 24px;
+  flex: 1;
 }
 .proof-project__category,
 .working-style__item > p {
@@ -1331,14 +1339,12 @@ select {
   .about-statement,
   .engagement-steps,
   .proof-work__heading,
+  .proof-work__grid,
   .fit-check { grid-template-columns: 1fr; }
   .about-hero { min-height: auto; padding-top: 64px; overflow: clip; }
   .founder-portrait { justify-self: start; max-width: min(520px, 100%); }
   .founder-portrait::before { display: none; }
   .about-statement > .eyebrow { grid-column: auto; }
-  .proof-project,
-  .proof-project:first-child { grid-template-columns: 1fr; grid-column: auto; }
-  .proof-project__image-wrap { min-height: 240px; }
   .fit-check { gap: 1px; }
 }
 @media(max-width:720px) {
