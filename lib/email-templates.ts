@@ -46,9 +46,9 @@ const SERVICE_STEPS: Record<string, { lead: string; body: string }[]> = {
     { lead: '60 minutes.', body: 'We&rsquo;ll move fast and keep it practical.' },
   ],
   launch: [
-    { lead: 'Calendar invite.', body: 'A calendar invite is attached to this email &mdash; add it so the time is locked in.' },
-    { lead: 'Nothing to prepare.', body: 'Bring your questions and your setup; we handle the rest.' },
-    { lead: '7-day follow-up.', body: 'After the session you get 7 days of support on anything we built.' },
+    { lead: 'Complete intake.', body: 'Share your goal and environment context, but never credentials or confidential datasets.' },
+    { lead: 'Private Google Meet.', body: 'Meeting details are delivered privately. If hands-on access is useful, you create a one-time attended support code during the call.' },
+    { lead: '7-day defect support.', body: 'One email thread covers defects in the agreed configuration for seven calendar days; new scope and provider changes are excluded.' },
   ],
   custom: [
     { lead: 'Scope first.', body: 'We&rsquo;ll define the build in our opening conversation.' },
@@ -303,7 +303,7 @@ ${receiptBtn}
                   <td bgcolor="#0A0A0C" style="background-color:#0A0A0C; padding-top:14px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size:12px; line-height:20px; color:#8E9BAE;">You&rsquo;re receiving this because you booked a session with Hermes Launch Lab. Reference <span style="font-family:SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace; font-size:11px; letter-spacing:0.06em; color:#E2E8F0;">${ref}</span> &middot; Paid ${d.amountUsd}.</td>
                 </tr>
                 <tr style="margin:0; padding:0;">
-                  <td bgcolor="#0A0A0C" style="background-color:#0A0A0C; padding-top:6px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size:12px; line-height:20px; color:#8E9BAE;">&copy; 2026 Hermes Launch Lab</td>
+                  <td bgcolor="#0A0A0C" style="background-color:#0A0A0C; padding-top:6px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size:12px; line-height:20px; color:#8E9BAE;">&copy; 2026 Tony Simons &middot; Independent consulting service &middot; Sessions are not recorded.</td>
                 </tr>
               </table>
             </td>

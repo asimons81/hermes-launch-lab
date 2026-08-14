@@ -8,14 +8,14 @@ import { EngagementSteps } from '@/components/EngagementSteps'
 export const metadata: Metadata = {
   title: 'Pricing & Services',
   description:
-    'One-time Hermes Agent consulting sessions: Strategy ($99), Launch ($299), and Custom Build ($600+). Direct hands-on work, no retainers, no vague subscriptions.',
+    'One-time Hermes Agent consulting sessions: Strategy ($99), Launch ($299), and scoped Custom Builds starting at $600. US online booking; international business applications reviewed manually.',
   alternates: { canonical: '/pricing' },
 }
 
 const services = [
   { slug: 'strategy', name: 'Hermes Strategy Session', price: 99, durationMin: 60, description: 'Fit assessment, model recommendations, hosting guidance, security discussion, and a written action plan.' },
-  { slug: 'launch', name: 'Hermes Launch Session', price: 299, durationMin: 90, description: 'Installation or repair, model configuration, channels, memory, permissions, one tested workflow, and 7-day follow-up support.' },
-  { slug: 'custom', name: 'Custom Hermes Build', price: 600, durationMin: 120, description: 'VPS deployment, integrations, custom skills, scheduled automations, and 7-day follow-up support. Application required — scoped through a conversation.' },
+  { slug: 'launch', name: 'Hermes Launch Session', price: 299, durationMin: 90, description: 'Installation or repair, model configuration, channels, memory, permissions, one tested workflow, and 7-day follow-up defect support by email.' },
+  { slug: 'custom', name: 'Custom Hermes Build', price: 600, durationMin: 120, description: 'Quoted after scope review; projects start at $600. VPS deployments, integrations, custom skills, and automations. Application required.' },
 ]
 
 export default function Pricing() {
@@ -25,7 +25,9 @@ export default function Pricing() {
       <main id="main-content" tabIndex={-1} className="shell page-shell pricing-page">
         <p className="eyebrow">PRICING & SERVICES</p>
         <h1 className="page-title">One-time sessions. No retainers.</h1>
-        <p className="page-intro">Launch and Custom sessions leave you with working software; Strategy ends with a written action plan. Pick the depth of help you need, without an upsell maze or vague subscription.</p>
+        <p className="page-intro">Strategy ends with a written action plan. Launch targets one tested workflow. Custom Builds are quoted only after scope review—without an upsell maze or vague subscription.</p>
+
+        <p className="notice geography-notice"><strong>US clients may book Strategy or Launch online.</strong> International business clients and all Custom Build clients may <a href="/apply" style={{ textDecoration: 'underline' }}>apply for review</a>. International consumer checkout is not available.</p>
 
         <div className="pricing-direct-note">
           <p className="eyebrow">DIRECT 1:1 WORK</p>
@@ -51,7 +53,7 @@ export default function Pricing() {
           <RoiCalculator />
         </section>
 
-        <p className="notice">Checkout is processed via Stripe. Independent service, not affiliated with Nous Research. Do not submit credentials in forms or email.</p>
+        <p className="notice">Checkout is processed via Stripe. Sessions use private Google Meet and, when authorized, attended one-time Chrome Remote Desktop access. Sessions are not recorded. Independent service, not affiliated with Nous Research.</p>
       </main>
       <SiteFooter />
     </>

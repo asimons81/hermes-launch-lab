@@ -20,7 +20,7 @@ export default async function Intake() {
       <main id="main-content" tabIndex={-1} className="shell page-shell page-shell--narrow">
         <p className="eyebrow">STEP 02 / PRE-SESSION</p>
         <h1 className="page-title">Pre-Session Intake</h1>
-        <p className="page-intro">Prepare your environment context so we hit the ground running.</p>
+        <p className="page-intro">Prepare your environment context so we hit the ground running. Sessions are not recorded.</p>
 
         <div className="notice" style={{ borderColor: 'var(--danger)', color: 'var(--danger)', marginBottom: 28 }}>
           <strong>WARNING:</strong> Do not submit passwords, API keys, tokens, or any secrets.
@@ -29,7 +29,7 @@ export default async function Intake() {
         <form action="/api/intake" method="post" className="card form-grid">
           <div><label htmlFor="fullName">Full name</label><input id="fullName" name="fullName" required /></div>
           <div><label htmlFor="email">Email</label><input id="email" type="email" name="email" defaultValue={session.user?.email || ''} required /></div>
-          <div><label htmlFor="timeZone">Time zone</label><input id="timeZone" name="timeZone" placeholder="e.g. America/Chicago" /></div>
+          <div><label htmlFor="timeZone">Time zone</label><input id="timeZone" name="timeZone" placeholder="e.g. America/Chicago" required /></div>
           <div><label htmlFor="os">Operating system</label><input id="os" name="os" placeholder="e.g. Arch Linux, macOS Sonoma, Windows 11" /></div>
           <div>
             <label htmlFor="comfortLevel">Technical comfort</label>
@@ -48,12 +48,7 @@ export default async function Intake() {
           </div>
           <div className="field--wide"><label htmlFor="firstWorkflow">First workflow you want to build</label><textarea id="firstWorkflow" name="firstWorkflow" rows={3} placeholder="Describe the outcome you want to achieve..." /></div>
           <div className="field--wide"><label htmlFor="blocker">Current blocker</label><textarea id="blocker" name="blocker" rows={3} placeholder="What is preventing you from reaching that goal today?" /></div>
-          <div className="field--wide" style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 8 }}>
-            <input type="checkbox" id="recordConsent" name="recordConsent" style={{ width: 'auto' }} />
-            <label htmlFor="recordConsent" style={{ margin: 0, fontWeight: 400, color: 'var(--muted)' }}>
-              I consent to session recording for internal notes only.
-            </label>
-          </div>
+          <div className="field--wide notice">No audio or video recording is made. Tony uses written session notes and deliverables instead.</div>
           <div className="field--wide" style={{ marginTop: 12 }}>
             <button type="submit" className="button button--primary" style={{ width: '100%' }}>Submit intake form <span>↗</span></button>
           </div>

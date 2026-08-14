@@ -3,6 +3,7 @@ import { prisma } from '@/lib/db'
 import { auth } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 import { isWithinAvailability } from '@/lib/availability'
+import { isBookableService, LEGAL_VERSIONS } from '@/lib/legal'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
@@ -17,6 +18,7 @@ export async function POST(req: Request) {
   // default (UTC on Vercel) is only a fallback — never the source of truth.
   const timeZone =
     (form.get('timeZone') as string) || Intl.DateTimeFormat().resolvedOptions().timeZone
+  const purchaseCountry = form.get('purchaseCountry') as string
 
   if (Number.isNaN(startTime.getTime())) {
     return new Response('Invalid start time', { status: 400 })
@@ -24,6 +26,13 @@ export async function POST(req: Request) {
 
   const service = await prisma.service.findUnique({ where: { id: serviceId } })
   if (!service) return new Response('Service not found', { status: 404 })
+  if (!service.isActive || !isBookableService(service.slug)) {
+    return new Response('This service requires an application and cannot be booked directly', { status: 400 })
+  }
+
+  if (purchaseCountry !== 'US' || form.get('acceptedUsOnly') !== 'yes') {
+    return new Response('Online booking is currently available only to customers purchasing from the United States', { status: 400 })
+  }
 
   const endTime = new Date(startTime.getTime() + service.durationMin * 60000)
 
@@ -33,9 +42,8 @@ export async function POST(req: Request) {
   }
 
   // Legal gate: terms acceptance is mandatory and recorded with the booking (Iowa UETA § 554D).
-  const TERMS_VERSION = '2026-08-10'
   if (form.get('acceptedTerms') !== 'yes') {
-    return new Response('You must accept the Terms of Service to book', { status: 400 })
+    return new Response('You must accept the service agreements to book', { status: 400 })
   }
 
   // No double-booking the same slot. Pending bookings hold the slot only for
@@ -78,7 +86,11 @@ export async function POST(req: Request) {
     startTime,
     endTime,
     timeZone,
-    acceptedTermsVersion: TERMS_VERSION,
+    purchaseCountry,
+    acceptedTermsVersion: LEGAL_VERSIONS.terms,
+    acceptedPrivacyVersion: LEGAL_VERSIONS.privacy,
+    acceptedRefundVersion: LEGAL_VERSIONS.refund,
+    acceptedConsultingVersion: LEGAL_VERSIONS.consulting,
     acceptedTermsAt: new Date(),
     status: 'pending',
     createdAt: new Date() // fresh hold window
@@ -99,9 +111,17 @@ export async function POST(req: Request) {
       quantity: 1
     }],
     expires_at: Math.floor(Date.now() / 1000) + 30 * 60 + 60, // 30-min min + skew buffer; slot hold (35 min) outlives it
+    billing_address_collection: 'required',
     success_url: `${process.env.NEXTAUTH_URL}/book/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.NEXTAUTH_URL}/book/cancel`,
-    metadata: { bookingId: booking.id }
+    metadata: {
+      bookingId: booking.id,
+      purchaseCountry,
+      termsVersion: LEGAL_VERSIONS.terms,
+      privacyVersion: LEGAL_VERSIONS.privacy,
+      refundVersion: LEGAL_VERSIONS.refund,
+      consultingVersion: LEGAL_VERSIONS.consulting,
+    }
   })
 
   redirect(checkout.url!)

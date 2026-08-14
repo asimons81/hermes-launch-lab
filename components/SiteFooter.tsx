@@ -14,8 +14,10 @@ export function SiteFooter() {
           <Link href="/about">About Tony</Link>
           <Link href="/features">What I build</Link>
           <Link href="/pricing" style={{ color: 'var(--ink)' }}>Book a session ↗</Link>
+          <Link href="/sessions">How sessions work</Link>
           <Link href="/intake">Pre-Session Intake</Link>
-          <Link href="/contact">Custom build contact</Link>
+          <Link href="/apply">Custom / international application</Link>
+          <Link href="/contact">Contact</Link>
         </div>
         <div className="footer-links">
           <div className="eyebrow">RESOURCES</div>
@@ -29,6 +31,7 @@ export function SiteFooter() {
           <Link href="/legal/privacy">Privacy Policy</Link>
           <Link href="/legal/terms">Terms of Service</Link>
           <Link href="/legal/refund">Refund Policy</Link>
+          <Link href="/legal/agreement">Consulting &amp; Remote Access</Link>
         </div>
       </div>
       <div className="shell site-footer__fineprint">

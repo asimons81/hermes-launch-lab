@@ -12,7 +12,7 @@ const steps = [
   {
     label: '03 / BUILD & VERIFY',
     title: 'Work through the useful part.',
-    copy: 'The session is direct and hands-on. Launch work covers setup or repair, configuration, and one tested workflow. Strategy ends with a written action plan.',
+    copy: 'Meet privately in Google Meet. If hands-on access is useful, you create a one-time Chrome Remote Desktop support code, remain present, and can disconnect at any time. Sessions are not recorded.',
   },
 ]
 
@@ -33,6 +33,7 @@ export function EngagementSteps() {
           </li>
         ))}
       </ol>
+      <p className="engagement-steps__more"><a className="text-link" href="/sessions">Read the complete session and access policy →</a></p>
     </section>
   )
 }

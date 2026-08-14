@@ -59,6 +59,7 @@ describe('Trust copy contract — every claim must be bounded and derivable', ()
     // The only monitored component is the health endpoint itself.
     expect(status).toMatch(/\/api\/health/)
     expect(status).toMatch(/not monitored/i)
+    expect(status).toMatch(/timestamp: ''/)
   })
 
   it('live terminal discloses simulation and drops stale/fabricated telemetry', () => {

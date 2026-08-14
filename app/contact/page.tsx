@@ -19,7 +19,7 @@ export default function Contact() {
         <p className="eyebrow">CONTACT</p>
         <h1 className="page-title">Contact Launch Lab.</h1>
         <p className="page-intro">
-          Questions, custom-build scoping, and requests for your records — reach out directly.
+          Questions and requests for access, export, correction, or deletion of your records — reach out directly. Custom and international business work starts with the application.
         </p>
 
         <div className="card" style={{ marginTop: 24 }}>
@@ -30,11 +30,14 @@ export default function Contact() {
             </a>
           </p>
 
-          <h2 style={{ marginTop: 24 }}>What to include</h2>
+          <h2 style={{ marginTop: 24 }}>Custom or international business work</h2>
           <p style={{ color: 'var(--muted)' }}>
-            For custom builds, describe the outcome you want, your current setup, and any deadlines. For
-            privacy requests (export or deletion), say so in the subject line.
+            <a href="/apply" style={{ textDecoration: 'underline' }}>Use the application</a> to share your business location, desired outcome,
+            current environment, deadline, and budget range. Applications are reviewed before scope, price, scheduling, or payment.
           </p>
+
+          <h2 style={{ marginTop: 24 }}>Privacy requests</h2>
+          <p style={{ color: 'var(--muted)' }}>Put “Privacy request” and the requested action in the subject line. Identity verification may be required before records are disclosed or deleted.</p>
 
           <p className="notice" style={{ marginTop: 24 }}>
             <strong>Do not email passwords, API keys, tokens, or secrets.</strong> Credentials are handled

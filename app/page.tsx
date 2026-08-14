@@ -41,6 +41,7 @@ export default function Home() {
               <strong>Direct 1:1 work.</strong> Book → prepare the useful context → build and verify the agreed workflow.
             </div>
             <p className="cockpit__note">No secrets shared. No mystery-box setup. You stay in control.</p>
+            <p className="cockpit__note"><strong>US online booking.</strong> International business clients may <Link href="/apply" style={{ textDecoration: 'underline' }}>apply for review</Link>.</p>
           </div>
           <div className="cockpit__terminal-wrap">
             <LiveTerminal />
@@ -98,7 +99,7 @@ export default function Home() {
             <div className="fit-panel__copy">
               <p>Come with a goal, a machine or server, and a willingness to work through the details. We&apos;ll keep the session practical.</p>
               <p>This is independent consulting for Hermes Agent. It is not official Nous Research support, and it is not a place to paste credentials into a form.</p>
-              <Link href="/faq" className="text-link">Read the FAQ <span aria-hidden="true">→</span></Link>
+              <Link href="/sessions" className="text-link">See exactly how sessions work <span aria-hidden="true">→</span></Link>
             </div>
           </div>
         </section>

@@ -99,7 +99,7 @@ export default function Features() {
                     <th style={{ textAlign: 'left', padding: '12px 16px', color: 'var(--muted)' }}>What&apos;s included</th>
                     <th style={{ textAlign: 'center', padding: '12px 16px', color: 'var(--muted)' }}>Strategy ($99)</th>
                     <th style={{ textAlign: 'center', padding: '12px 16px', color: 'var(--gold)' }}>Launch ($299)</th>
-                    <th style={{ textAlign: 'center', padding: '12px 16px', color: 'var(--muted)' }}>Custom ($600+)</th>
+                    <th style={{ textAlign: 'center', padding: '12px 16px', color: 'var(--muted)' }}>Custom (from $600)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -107,7 +107,7 @@ export default function Features() {
                     <td style={{ padding: '12px 16px', color: 'var(--fg)', fontFamily: 'var(--sans)', fontWeight: 500 }}>Duration</td>
                     <td style={{ textAlign: 'center', padding: '12px 16px' }}>60 min</td>
                     <td style={{ textAlign: 'center', padding: '12px 16px' }}>90 min</td>
-                    <td style={{ textAlign: 'center', padding: '12px 16px' }}>120 min</td>
+                    <td style={{ textAlign: 'center', padding: '12px 16px' }}>Quoted scope</td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid rgba(242,240,233,0.08)' }}>
                     <td style={{ padding: '12px 16px', color: 'var(--fg)', fontFamily: 'var(--sans)', fontWeight: 500 }}>Written action plan</td>
@@ -161,7 +161,7 @@ export default function Features() {
         </section>
 
         <section style={{ marginTop: 48, marginBottom: 32, textAlign: 'center' }}>
-          <Link href="/book" className="button button--primary" style={{ padding: '12px 32px', fontSize: 16 }}>
+          <Link href="/book?service=launch" className="button button--primary" style={{ padding: '12px 32px', fontSize: 16 }}>
             Book a Launch Session ↗
           </Link>
         </section>

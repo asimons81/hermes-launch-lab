@@ -29,9 +29,9 @@ function recommend(answers: Answers): { slug: string; name: string; price: strin
     return {
       slug: 'custom',
       name: 'Custom Hermes Build',
-      price: '$600+',
-      why: 'You want the full system — VPS deployment, integrations, custom skills, and scheduled automations. This is a 120-minute working session that leaves you with a production setup. Application required before booking.',
-      prep: 'Bring your server or VPS details, API keys for services you want integrated, and your automation goals.',
+      price: 'From $600',
+      why: 'You want work that needs a written scope — VPS deployment, integrations, custom skills, or scheduled automations. Application and quote required before scheduling or payment.',
+      prep: 'Describe the desired outcome, current environment, deadline, and budget. Never put credentials in the application.',
     }
   }
   if (depth === 'Ready to set up') {
@@ -79,9 +79,9 @@ export function DiagnosticIntake() {
           <article className="offer">
             <p className="offer__label">BUILT TO FIT</p>
             <h3>Custom build</h3>
-            <p className="offer__price">$600+</p>
-            <p>120 min · VPS, integrations, custom skills, and scheduled automations. Application required.</p>
-            <Link className="offer__link" href="/book?service=custom">Choose this path <span>→</span></Link>
+            <p className="offer__price">From $600</p>
+            <p>Quoted after review · VPS, integrations, custom skills, and scheduled automations. Application required.</p>
+            <Link className="offer__link" href="/apply">Apply for review <span>→</span></Link>
           </article>
         </div>
       </div>
@@ -107,7 +107,7 @@ export function DiagnosticIntake() {
               <p>{rec.prep}</p>
             </div>
             <div className="diagnostic__actions">
-              <Link href={`/book?service=${rec.slug}`} className="button button--primary">Book this session <span>↗</span></Link>
+              <Link href={rec.slug === 'custom' ? '/apply' : `/book?service=${rec.slug}`} className="button button--primary">{rec.slug === 'custom' ? 'Apply for review' : 'Book this session'} <span>↗</span></Link>
               <button type="button" className="text-link" onClick={() => { setStepIndex(0); setAnswers({}); setShowResult(false) }}>Start over</button>
             </div>
           </div>

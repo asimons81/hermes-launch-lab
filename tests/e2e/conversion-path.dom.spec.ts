@@ -46,11 +46,21 @@ test.describe('conversion and proof path', () => {
     expect(order.steps).toBeLessThan(order.diagnostic)
   })
 
+  test('session page exposes the complete attended-access control flow', async ({ page }) => {
+    await page.goto('/sessions', { waitUntil: 'networkidle' })
+    await expect(page.getByRole('heading', { level: 1, name: /stays under your control/i })).toBeVisible()
+    await expect(page.getByText('Google Meet', { exact: true })).toBeVisible()
+    await expect(page.getByText('One-time access', { exact: true })).toBeVisible()
+    await expect(page.getByText('Client enters secrets', { exact: true })).toBeVisible()
+    await expect(page.getByText(/unattended remote access is never installed/i)).toBeVisible()
+    await expect(page.getByText(/sessions are not recorded/i).first()).toBeVisible()
+  })
+
   test('conversion pages remain usable without horizontal overflow at mobile and desktop widths', async ({ browser }) => {
     for (const width of [375, 1280]) {
       const context = await browser.newContext({ viewport: { width, height: 900 } })
       const page = await context.newPage()
-      for (const path of ['/', '/about', '/pricing', '/faq', '/features']) {
+      for (const path of ['/', '/about', '/pricing', '/sessions', '/faq', '/features', '/contact', '/legal/agreement', '/legal/privacy', '/legal/refund']) {
         await page.goto(path, { waitUntil: 'networkidle' })
         const dimensions = await page.evaluate(() => ({ viewport: window.innerWidth, document: document.documentElement.scrollWidth }))
         expect(dimensions.document, `${path} overflow at ${width}px`).toBeLessThanOrEqual(dimensions.viewport)

@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Terms of Service',
   description:
-    'The rules governing independent Hermes consulting sessions. Last updated August 10, 2026.',
+    'The rules governing independent Hermes consulting sessions. Last updated August 14, 2026.',
   alternates: { canonical: '/legal/terms' },
 }
 
@@ -11,7 +11,7 @@ export default function Terms() {
   return (
     <article>
       <h1 className="page-title">Terms of Service</h1>
-      <p className="page-intro">The rules governing independent consulting sessions. Last updated August 10, 2026.</p>
+      <p className="page-intro">The rules governing independent consulting sessions provided by Tony Simons. Last updated August 14, 2026.</p>
 
       <div className="card" style={{ marginTop: 24 }}>
         <h2 style={{ marginTop: 0 }}>1. Scope of Work</h2>
@@ -25,6 +25,8 @@ export default function Terms() {
         <p style={{ color: 'var(--muted)' }}>
           Payment is processed securely via Stripe at time of booking. Your session time is reserved when payment succeeds.
           Cancellation and rescheduling follow the <a href="/legal/refund" style={{ color: 'var(--accent, inherit)' }}>Refund &amp; Cancellation Policy</a>.
+          Self-service booking is available only to purchasers in the United States. International business engagements require application,
+          review, and a separate written scope; international consumer checkout is not offered.
         </p>
 
         <h2 style={{ marginTop: 24 }}>3. Client Responsibilities</h2>
@@ -43,9 +45,9 @@ export default function Terms() {
 
         <h2 style={{ marginTop: 24 }}>5. Intellectual Property</h2>
         <p style={{ color: 'var(--muted)' }}>
-          You receive a non-exclusive, non-transferable license to use the workflows, configurations, and materials specifically created
-          for your session, for your own business use. Tony retains all rights to his methods, templates, processes, and general knowledge,
-          and may reuse them for other clients. Open-source software remains under its own license.
+          After full payment, you own client-specific code, configurations, documentation, and bespoke materials created for your session.
+          Tony retains pre-existing tools, reusable templates and components, methods, processes, and general knowledge and may reuse them.
+          Third-party and open-source materials remain under their own licenses.
         </p>
 
         <h2 style={{ marginTop: 24 }}>6. No Guarantee of Outcomes</h2>
@@ -64,7 +66,8 @@ export default function Terms() {
 
         <h2 style={{ marginTop: 24 }}>8. Acceptance &amp; Electronic Record</h2>
         <p style={{ color: 'var(--muted)' }}>
-          By checking the acceptance box at booking, you agree to these terms. Your acceptance is an electronic signature under the
+          By checking the acceptance box at booking, you agree to these Terms, the Consulting &amp; Remote Access Agreement, the Privacy Policy,
+          and the Refund &amp; Cancellation Policy. Your acceptance is an electronic signature under the
           Iowa Uniform Electronic Transactions Act (Iowa Code Chapter 554D) and the federal E-Sign Act, and is recorded with the
           date, time, and version of these terms. You may save or print these terms at any time.
         </p>

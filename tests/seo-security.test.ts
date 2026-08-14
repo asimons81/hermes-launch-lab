@@ -13,6 +13,7 @@ const PUBLIC_ROUTES = [
   { path: '/about', file: 'app/about/page.tsx' },
   { path: '/contact', file: 'app/contact/page.tsx' },
   { path: '/pricing', file: 'app/pricing/page.tsx' },
+  { path: '/sessions', file: 'app/sessions/page.tsx' },
   { path: '/features', file: 'app/features/page.tsx' },
   { path: '/faq', file: 'app/faq/page.tsx' },
   { path: '/status', file: 'app/status/layout.tsx' },

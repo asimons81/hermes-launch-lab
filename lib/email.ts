@@ -11,7 +11,11 @@ import {
   shortTimeZone,
 } from './email-templates'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+function emailClient(): Resend {
+  const key = process.env.RESEND_API_KEY
+  if (!key) throw new Error('RESEND_API_KEY is not configured')
+  return new Resend(key)
+}
 
 const FROM = process.env.RESEND_FROM ?? 'Hermes Launch Lab <tony@tonyreviewsthings.com>'
 const REPLY_TO = 'Tony Simons <tony@tonyreviewsthings.com>'
@@ -19,7 +23,7 @@ const ADMIN_EMAIL = process.env.ADMIN_EMAIL ?? 'tony@tonyreviewsthings.com'
 const BASE_URL = process.env.NEXTAUTH_URL ?? 'https://launch.tonysimons.dev'
 
 export async function sendMagicLink(email: string, url: string) {
-  await resend.emails.send({
+  await emailClient().emails.send({
     from: FROM,
     to: email,
     subject: 'Sign in to Hermes Launch Lab',
@@ -45,7 +49,6 @@ export type ConfirmationBooking = {
     messaging: string | null
     firstWorkflow: string | null
     blocker: string | null
-    recordConsent: boolean | null
     additional: string | null
   } | null
 }
@@ -113,7 +116,7 @@ export async function sendBookingConfirmation(booking: ConfirmationBooking, rece
   )
 
   const result = await withTimeout(
-    resend.emails.send({
+    emailClient().emails.send({
       from: FROM,
       replyTo: REPLY_TO,
       to: user.email,
@@ -157,7 +160,6 @@ export async function sendAdminNotification(booking: ConfirmationBooking, receip
       ['Messaging', intake.messaging],
       ['First workflow', intake.firstWorkflow],
       ['Blocker', intake.blocker],
-      ['Record consent', intake.recordConsent],
       ['Additional', intake.additional],
     ]
     for (const [label, value] of rows) {
@@ -183,7 +185,7 @@ export async function sendAdminNotification(booking: ConfirmationBooking, receip
   ].join('\n')
 
   const result = await withTimeout(
-    resend.emails.send({
+    emailClient().emails.send({
       from: FROM,
       to: ADMIN_EMAIL,
       subject: `New booking — ${service.name} — ${amountUsd} — ${dateLine}`,

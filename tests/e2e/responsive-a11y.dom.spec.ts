@@ -1,7 +1,7 @@
 import { test, expect, Page, BrowserContext } from '@playwright/test'
 
 const VIEWPORTS = [390, 768, 1024, 1280, 1440]
-const PAGES = ['/', '/pricing', '/features', '/docs', '/docs/quickstart', '/faq', '/status', '/legal/terms', '/services']
+const PAGES = ['/', '/pricing', '/sessions', '/features', '/docs', '/docs/quickstart', '/faq', '/contact', '/status', '/legal/terms', '/legal/agreement', '/legal/privacy', '/legal/refund', '/services']
 
 async function newCtx(browser: any, width: number): Promise<BrowserContext> {
   return browser.newContext({ viewport: { width, height: 900 } })

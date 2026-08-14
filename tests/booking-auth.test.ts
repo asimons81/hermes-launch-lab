@@ -122,12 +122,15 @@ describe('custom build application path is truthful', () => {
 
   it('pricing page carries the same truthful custom copy', () => {
     const page = read('app/pricing/page.tsx')
-    expect(page).not.toMatch(/Application required\./)
+    expect(page).toMatch(/Application required\./)
+    expect(page).toMatch(/projects start at \$600/i)
+    expect(page).not.toMatch(/book\?service=custom/)
   })
 
-  it('custom card points to the public contact path instead of a nonexistent app flow', () => {
+  it('custom card points to the authenticated application flow instead of checkout', () => {
     const card = read('components/ServiceCard.tsx')
-    expect(card).toContain('/contact')
+    expect(card).toContain('/apply')
+    expect(card).not.toContain('/book?service=custom')
     expect(card).toMatch(/custom/i)
   })
 })

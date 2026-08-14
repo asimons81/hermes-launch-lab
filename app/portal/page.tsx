@@ -96,6 +96,7 @@ export default async function Portal() {
                     <div style={{ marginTop: 6, fontSize: 14, color: 'var(--bone, #E2E8F0)' }}>
                       {formatDateLine(b.startTime, b.timeZone)} · {formatTimeLine(b.startTime, b.endTime, b.timeZone)}
                     </div>
+                    {b.status === 'confirmed' && <p style={{ margin: '8px 0 0', fontSize: 13, color: 'var(--muted)' }}>Private Google Meet details are delivered by email before the session. Sessions are not recorded.</p>}
                   </div>
                 ))}
               </div>
@@ -106,7 +107,7 @@ export default async function Portal() {
             <h2 style={{ fontSize: 20, margin: '0 0 8px 0' }}>Past Session Notes</h2>
             {past.length === 0 ? (
               <>
-                <p style={{ color: 'var(--muted)' }}>No past sessions recorded yet.</p>
+                <p style={{ color: 'var(--muted)' }}>No completed session notes yet.</p>
                 <Link href="/docs/quickstart" className="text-link" style={{ marginTop: 16 }}>
                   Browse Hermes docs <span>→</span>
                 </Link>

@@ -206,6 +206,54 @@ select {
 .field--wide {
   grid-column: 1 / -1;
 }
+
+/* === Session privacy & control diagrams === */
+.control-flow {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin: 44px 0 56px;
+}
+.control-flow__node {
+  min-height: 116px;
+  padding: 18px;
+  border: 1px solid var(--line-strong);
+  background: linear-gradient(145deg, rgba(255,42,53,.08), rgba(10,10,12,.9));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+.control-flow__node:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  right: -12px;
+  top: 43%;
+  color: var(--red-accent);
+  z-index: 2;
+}
+.control-flow__node span { font: 700 11px/1 var(--mono); color: var(--red-accent); letter-spacing: .12em; }
+.control-flow__node strong { font-family: var(--display); font-size: 19px; line-height: 1.1; }
+.session-steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.session-steps li:last-child { grid-column: 1 / -1; }
+.session-steps h2 { margin: 0 0 8px; font-size: 24px; }
+.session-steps p:last-child { margin: 0; color: var(--muted); }
+.session-boundaries { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; padding: 32px; }
+.session-boundaries h2 { margin: 0 0 8px; }
+.session-boundaries p:last-child { color: var(--muted); margin-bottom: 0; }
+.session-policy { margin-top: 16px; }
+.session-actions { display: flex; align-items: center; gap: 24px; margin-top: 28px; }
+.engagement-steps__more { margin-top: 18px; }
+.geography-notice { margin: 24px 0; }
+
+@media (max-width: 800px) {
+  .control-flow { grid-template-columns: 1fr; }
+  .control-flow__node { min-height: 84px; }
+  .control-flow__node:not(:last-child)::after { content: '↓'; right: 18px; top: auto; bottom: -18px; }
+  .session-steps, .session-boundaries { grid-template-columns: 1fr; }
+  .session-steps li:last-child { grid-column: auto; }
+  .session-actions { align-items: flex-start; flex-direction: column; }
+}
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;

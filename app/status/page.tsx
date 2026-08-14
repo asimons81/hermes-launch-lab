@@ -5,16 +5,16 @@ import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
 
 interface HealthMetrics {
-  status: 'ok' | 'error'
+  status: 'checking' | 'ok' | 'error'
   latencyMs: number | null
   timestamp: string
 }
 
 export default function StatusPage() {
   const [metrics, setMetrics] = useState<HealthMetrics>({
-    status: 'ok',
+    status: 'checking',
     latencyMs: null,
-    timestamp: new Date().toLocaleTimeString(),
+    timestamp: '',
   })
   const [isPinging, setIsPinging] = useState(false)
 
@@ -47,11 +47,12 @@ export default function StatusPage() {
   }, [])
 
   const healthOk = metrics.status === 'ok'
+  const healthChecking = metrics.status === 'checking'
 
   // Only claims backed by the live /api/health probe (app + database round-trip).
   const verified = [
-    { name: 'Health Endpoint (/api/health)', status: healthOk ? 'Operational' : 'Degraded', detail: healthOk ? (metrics.latencyMs !== null ? `${metrics.latencyMs}ms response` : 'responding') : 'not responding' },
-    { name: 'Application & Database', status: healthOk ? 'Operational' : 'Degraded', detail: healthOk ? 'SELECT 1 via Prisma' : 'database check failing' },
+    { name: 'Health Endpoint (/api/health)', status: healthChecking ? 'Checking' : healthOk ? 'Operational' : 'Degraded', detail: healthChecking ? 'probe in progress' : healthOk ? (metrics.latencyMs !== null ? `${metrics.latencyMs}ms response` : 'responding') : 'not responding' },
+    { name: 'Application & Database', status: healthChecking ? 'Checking' : healthOk ? 'Operational' : 'Degraded', detail: healthChecking ? 'probe in progress' : healthOk ? 'SELECT 1 via Prisma' : 'database check failing' },
   ]
 
   // Components this page does not probe. We state the boundary instead of guessing.
@@ -103,13 +104,13 @@ export default function StatusPage() {
             <div style={{ padding: 12, background: 'rgba(10,11,9,0.8)', border: '1px solid rgba(242,240,233,0.1)' }}>
               <div style={{ fontSize: 11, fontFamily: 'var(--mono)', color: 'var(--muted)' }}>STATUS</div>
               <div style={{ fontSize: 24, fontFamily: 'var(--mono)', color: healthOk ? 'var(--term-green)' : 'var(--red-accent)', marginTop: 4 }}>
-                {healthOk ? 'OK' : 'ERROR'}
+                {healthChecking ? '—' : healthOk ? 'OK' : 'ERROR'}
               </div>
             </div>
             <div style={{ padding: 12, background: 'rgba(10,11,9,0.8)', border: '1px solid rgba(242,240,233,0.1)' }}>
               <div style={{ fontSize: 11, fontFamily: 'var(--mono)', color: 'var(--muted)' }}>LAST CHECK</div>
               <div style={{ fontSize: 14, fontFamily: 'var(--mono)', color: 'var(--fg)', marginTop: 8 }}>
-                {metrics.timestamp}
+                {metrics.timestamp || '—'}
               </div>
             </div>
           </div>

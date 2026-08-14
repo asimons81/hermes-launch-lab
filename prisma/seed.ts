@@ -8,7 +8,7 @@ export async function seedServices() {
     data: [
       { slug: 'strategy', name: 'Hermes Strategy Session', price: 99, durationMin: 60, description: 'Fit assessment, model recommendations, hosting guidance, security discussion, written action plan.', isFeatured: true },
       { slug: 'launch', name: 'Hermes Launch Session', price: 299, durationMin: 90, description: 'Installation or repair, model configuration, channels, memory, permissions, one tested workflow, 7-day follow-up.', isFeatured: true },
-      { slug: 'custom', name: 'Custom Hermes Build', price: 600, durationMin: 120, description: 'VPS deployment, integrations, custom skills, scheduled automations, and 7-day follow-up support. Application required — scoped through a conversation.' }
+      { slug: 'custom', name: 'Custom Hermes Build', price: 600, durationMin: 120, description: 'Quoted after scope review. Projects start at $600. Application required.', isActive: false }
     ]
   })
   console.log('Services seeded')

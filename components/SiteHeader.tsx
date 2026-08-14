@@ -46,6 +46,7 @@ export function SiteHeader() {
           <Link href="/about">About Tony</Link>
           <Link href="/features">What I build</Link>
           <Link href="/pricing">Pricing</Link>
+          <Link href="/sessions">Sessions</Link>
           <Link href="/docs">Docs</Link>
         </nav>
 
@@ -80,6 +81,7 @@ export function SiteHeader() {
           <Link href="/about" onClick={handleNavClick} style={navLinkStyle}>About Tony</Link>
           <Link href="/features" onClick={handleNavClick} style={navLinkStyle}>What I build</Link>
           <Link href="/pricing" onClick={handleNavClick} style={navLinkStyle}>Pricing</Link>
+          <Link href="/sessions" onClick={handleNavClick} style={navLinkStyle}>Sessions</Link>
           <Link href="/docs" onClick={handleNavClick} style={navLinkStyle}>Docs</Link>
           <Link href="/faq" onClick={handleNavClick} style={navLinkStyle}>FAQ</Link>
           <button type="button" onClick={() => { handleNavClick(); openCommandPalette() }} className="site-header__drawer-search">Search commands</button>

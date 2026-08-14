@@ -26,6 +26,34 @@ export async function POST(req: Request) {
   if (!booking) return new Response('ok')
 
   if (event.type === 'checkout.session.completed') {
+    // Defense in depth: the booking form gates self-service to US purchasers,
+    // and Stripe billing-country data verifies that assertion after payment.
+    // A mismatch is refunded immediately and never becomes a confirmed booking.
+    const billingCountry = session.customer_details?.address?.country
+    if (booking.purchaseCountry !== 'US' || billingCountry !== 'US') {
+      const paymentIntentId = typeof session.payment_intent === 'string'
+        ? session.payment_intent
+        : session.payment_intent?.id
+      if (paymentIntentId) {
+        await stripe.refunds.create({ payment_intent: paymentIntentId }, {
+          idempotencyKey: `non-us-${session.id}`,
+        })
+      }
+      await prisma.payment.upsert({
+        where: { stripeId: session.id },
+        create: {
+          userId: booking.userId,
+          bookingId: booking.id,
+          stripeId: session.id,
+          amount: session.amount_total || 0,
+          status: 'refunded',
+        },
+        update: { status: 'refunded', amount: session.amount_total || 0 },
+      })
+      await prisma.booking.update({ where: { id: booking.id }, data: { status: 'cancelled' } })
+      return new Response('ok')
+    }
+
     // Capture the Stripe-hosted receipt URL (exists in test mode too).
     // Best-effort: a failure here must not block booking confirmation.
     let receiptUrl: string | null = null

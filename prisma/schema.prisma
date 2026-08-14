@@ -44,7 +44,11 @@ model Booking {
   endTime     DateTime
   status      String    @default("pending") // pending | confirmed | cancelled | completed
   timeZone    String
+  purchaseCountry String   @default("US")
   acceptedTermsVersion String?
+  acceptedPrivacyVersion String?
+  acceptedRefundVersion String?
+  acceptedConsultingVersion String?
   acceptedTermsAt      DateTime?
   createdAt   DateTime  @default(now())
   user        User      @relation(fields: [userId], references: [id])

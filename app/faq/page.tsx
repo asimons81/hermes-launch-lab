@@ -13,11 +13,14 @@ const faqs = [
   ['Is this official Hermes support?', 'No. This is an independent consulting service, not affiliated with Nous Research or Hermes Agent maintainers.'],
   ['Who is a Launch Session for?', 'The Launch Session is for someone ready to work on a real machine or server: installation or repair, configuration, permissions, and one workflow worth testing.'],
   ['What leaves the session working?', 'Strategy produces a written action plan. Launch includes hands-on setup or repair and one tested workflow within the session scope. Custom work is defined in writing before it begins.'],
-  ['What happens after I book?', 'You sign in, choose a time, complete payment, then provide the goal and environment details needed for the work. Bring a clear outcome. Do not put passwords, API keys, tokens, or private keys in a form or email.'],
-  ['How do credentials and access work?', 'You grant access only to systems needed for the agreed work, and only with your explicit consent during the session. You remain responsible for credentials you choose to share and should revoke or rotate them afterward.'],
+  ['What happens after I book?', 'You sign in, choose a time in your local zone with Central Time shown for reference, confirm the agreements and US purchasing eligibility, then pay. Next, provide goal and environment context—never credentials. A private Google Meet link is sent for the session.'],
+  ['How do credentials and remote access work?', 'If hands-on access is useful, you generate a fresh Chrome Remote Desktop support code, explicitly approve access, remain present, and may disconnect at any time. No unattended access is installed. You enter all passwords, MFA codes, API keys, and other secrets yourself. Screen-share coaching is always available instead.'],
+  ['Are sessions recorded?', 'No. Sessions are not recorded. Tony uses written notes and deliverables instead.'],
+  ['Who can book online?', 'Self-service Strategy and Launch booking is currently available to US purchasers. International business clients may apply for review. International consumer checkout is not available.'],
   ['When should I choose Strategy, Launch, or Custom?', 'Choose Strategy when you need a fit assessment and written plan. Choose Launch when you are ready for a hands-on setup or repair and one tested workflow. Choose Custom when the work needs a scoped definition before implementation.'],
   ['Do you guarantee a specific result?', 'No. Services are delivered on a best-efforts basis. Software and AI tooling change, so no specific result, performance level, uptime, or future compatibility is guaranteed.'],
-  ['How do I cancel?', 'Give 24 hours or more notice for a full credit. See the refund policy for details.'],
+  ['What does 7-day follow-up include?', 'Launch includes one continuing email thread for defects in the agreed configuration for seven calendar days after the session. It excludes new features, expanded scope, provider outages, and third-party software changes.'],
+  ['How do I cancel?', 'With at least 24 hours notice, choose one reschedule or a refund to the original payment method. With less notice, the session is forfeited. A 15-minute grace period applies to lateness and no-shows.'],
 ]
 
 export default function FAQ() {
