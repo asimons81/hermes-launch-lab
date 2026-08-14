@@ -29,12 +29,12 @@ describe('conversion and proof contract', () => {
     expect(existsSync(resolve(process.cwd(), 'lib/project-proof.ts'))).toBe(true)
     const proof = read('lib/project-proof.ts')
     for (const repo of PROOF_REPOS) expect(proof).toContain(repo)
-    expect(proof).toMatch(/hermes-vault\.webp|hermes-vault\.jpg/)
-    expect(proof).toMatch(/nexusos\.webp|nexusos\.jpg/)
-    expect(proof).toMatch(/hardproof\.webp|hardproof\.jpg/)
-    expect(existsSync(resolve(process.cwd(), 'public/media/projects/hermes-vault.jpg'))).toBe(true)
-    expect(existsSync(resolve(process.cwd(), 'public/media/projects/nexusos.jpg'))).toBe(true)
-    expect(existsSync(resolve(process.cwd(), 'public/media/projects/hardproof.jpg'))).toBe(true)
+    expect(proof).toMatch(/vault-receipt-1200\.webp|hermes-vault\.jpg/)
+    expect(proof).toMatch(/nexusos-receipt-1200\.webp|nexusos\.jpg/)
+    expect(proof).toMatch(/hardproof-receipt-1200\.webp|hardproof\.jpg/)
+    expect(existsSync(resolve(process.cwd(), 'public/media/projects/vault-receipt-1200.webp'))).toBe(true)
+    expect(existsSync(resolve(process.cwd(), 'public/media/projects/nexusos-receipt-1200.webp'))).toBe(true)
+    expect(existsSync(resolve(process.cwd(), 'public/media/projects/hardproof-receipt-1200.webp'))).toBe(true)
   })
 
   it('puts real work, direct engagement steps, and About in the homepage conversion path', () => {

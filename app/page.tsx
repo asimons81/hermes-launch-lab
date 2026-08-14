@@ -10,6 +10,7 @@ import { StatusBar } from '@/components/StatusBar'
 import { FounderPortrait } from '@/components/FounderPortrait'
 import { ProjectProofGrid } from '@/components/ProjectProofGrid'
 import { EngagementSteps } from '@/components/EngagementSteps'
+import { ReceiptFigure } from '@/components/ReceiptFigure'
 
 export const metadata: Metadata = {
   title: { absolute: 'Hermes Launch Lab — Tony Simons Independent Studio' },
@@ -51,6 +52,19 @@ export default function Home() {
 
         <section className="receipts-section" style={{ paddingBlock: 24 }}>
           <div className="shell"><ReceiptsRail /></div>
+        </section>
+
+        <section className="shell" style={{ paddingBlock: '48px 24px' }}>
+          <ReceiptFigure
+            src="/media/receipts/home-workflow-receipt-1440.webp"
+            mobileSrc="/media/receipts/home-workflow-receipt-720x900.webp"
+            alt="SANITIZED EXAMPLE — NOT LIVE CLIENT DATA — one Launch session from goal, access boundary, execution, verification, to handoff"
+            width={1440}
+            height={900}
+            mobileWidth={720}
+            mobileHeight={900}
+          />
+          <p className="eyebrow" style={{ marginTop: 12 }}>REAL SESSION RUNBOOK · SANITIZED RECEIPT</p>
         </section>
 
         <div className="shell"><ProjectProofGrid /></div>

@@ -27,8 +27,8 @@ export function ProjectProofGrid({
               <Image
                 src={project.image}
                 alt={project.imageAlt}
-                width={1376}
-                height={768}
+                width={1200}
+                height={750}
                 sizes="(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 33vw"
                 className="proof-project__image"
               />

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
 import { SkillCatalog } from '@/components/SkillCatalog'
+import { ReceiptFigure } from '@/components/ReceiptFigure'
 
 export const metadata: Metadata = {
   title: 'What Tony Builds with Hermes',
@@ -27,6 +28,20 @@ export default function Features() {
         <p className="page-intro">
           Hermes runs on your hardware and can execute real work across research, coding, content production, and operations. The session work is about configuring the useful parts around it: clear access boundaries, durable workflows, and a result you can test.
         </p>
+
+        {/* Example workflow receipt */}
+        <section style={{ marginTop: 40 }}>
+          <ReceiptFigure
+            src="/media/receipts/example-workflow-1440.webp"
+            mobileSrc="/media/receipts/example-workflow-720x900.webp"
+            alt="SANITIZED EXAMPLE — a workflow from inputs, index, publish, schedule, to verification"
+            width={1440}
+            height={900}
+            mobileWidth={720}
+            mobileHeight={900}
+          />
+          <p className="eyebrow" style={{ marginTop: 12 }}>SANITIZED EXAMPLE · INPUTS → OPERATIONS → VERIFICATION</p>
+        </section>
 
         {/* 3 Pillars */}
         <section style={{ marginTop: 40 }}>
