@@ -7,10 +7,10 @@
 - [x] Health endpoint green: https://launch.tonysimons.dev/api/health → {"ok":true}
 - [x] Auth gate verified: /book → 307 /auth/signin
 - [x] Rollback plan: previous Vercel deployment (Vercel keeps history)
-- [ ] Stripe webhook endpoint URL updated in Stripe dashboard to https://launch.tonysimons.dev/api/webhooks/stripe (was hermes.tonysimons.dev)
+- [x] Stripe webhook endpoint URL updated in Stripe dashboard to https://launch.tonysimons.dev/api/webhooks/stripe (was hermes.tonysimons.dev) — endpoint recreated live we_1U4hXBKkt9jvIttyKBUFpBVs on 2026-08-15; Vercel prod env swapped to live keys; signed-event verify HTTP 200
 - [x] Admin user created with role=admin (tony@tonyreviewsthings.com, 2026-08-10)
 - [x] Services seeded (3 sessions live via /api/services; db:seed no-op bug fixed in df06665)
-- [ ] Test checkout end-to-end in live mode
+- [ ] Test checkout end-to-end in live mode (webhook signature path verified 2026-08-15; live flip + Tony gate approved 2026-08-15 kanban t_5f09e800; full purchase flow remaining — real-card test, refundable)
 - [ ] Email domain verified with Resend (sender tony@tonyreviewsthings.com)
 - [ ] Privacy/Terms/Refund pages reviewed by counsel
 - [ ] Backup strategy documented
